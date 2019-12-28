@@ -1,0 +1,11 @@
+filetype on
+set number
+set tabstop=4
+set shiftwidth=4
+set textwidth=80
+
+" to undo auto indent: set noautoindent
+set autoindent
+set smartindent
+set cindent
+

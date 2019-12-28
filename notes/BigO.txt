@@ -1,0 +1,282 @@
+What is good code?
+1. Readable
+2. Scalable
+
+BIG O notation is the language we use talking about how long the algorithm takes to run.
+Using BIG O we can compare 2 different algorithms which one is better in terms of scaling, regardless of computer(one computer is powerful than other) differences.
+Big O notation allows us to measure idea of scalable, code that can scale.
+
+We can measure BIG O: Complexity Chart: Operations(y-axis) Vs Elements(x-axis):
+O(log n), O(1): Excellent
+O(n): Fair
+O(n log n): Bad
+O(n ^2), O(2^n), O(n!): Horrible
+
+BIG O: When we grow bigger and bigger with our input, How much does the algorithm or function slow down.
+I.e. If number of elements increases in array, how many operations we have to do to find any element in array. This is called Algorithmic efficiency.
+
+For measuring BigO, time is not good measure. As Each computer may take different times depending upon their speed. Slower computers may take 
+huge amount of time to execute code. The same code can be executed in short time by faster computers. So for BigO time is not considered.
+
+What is considered for BiGO measurement?
+Number of operations that is executed in an operation.
+
+## for linear search: the number of operations it will take is equal to number of elements.
+i.e. Operations on y-axis, elements on x-axis:
+for 1 element 1 operation to find an element
+for 2		  2 operations
+for 3		  3 operations
+for 5		  5 operations
+i.e. graph increases linearly: and is represented by 
+
+###############################
+# O(n) ---> linear time:  depends on number of inputs
+###############################
+
+Java script example:
+---------------------------------------------------------
+const nemo = ['nemo'];
+
+const everyone = ['dory', 'bruce', 'marlin','nemo', 'gill','bloat','nigel','squirt','darla','hank'];
+
+const large = new Array(100).fill('nemo');
+
+findNemo()
+{
+  for(let i = 0; i < array.length; i++){
+    if(array[i] === 'nemo') {
+      console.log('Found nemo');
+    }
+}
+
+// number of operations performed by findNemo() depends on number of elements.
+// As elements increases, operations too increases. Which means it is Linear function.
+// And it is denoted as O(n): Linear time. n is number of inputs.
+findNemo(everyone);
+---------------------------------------------------------
+
+###############################
+# O(1): Constant time
+###############################
+
+No matter how many operations you do i.e. 
+2 operations O(2)
+3 operations O(3) ....
+but still on graph it is straight line. So any number of operations we do we represent this as O(1): Constant time
+
+Example:
+No matter whatever the size of boxes, we always print first entry in array.
+so the number of operation is 1. which is represented as O(1).
+---------------------------------------------------------
+function compress(boxes)
+{ 
+   console.log(boxes[0]);
+}
+---------------------------------------------------------
+
+
+# What is BigO of the below function?
+---------------------------------------------------------
+function funChallenge(input) {
+  let a = 10;					// O(1): As it runs only once irrespective of input array
+  a = 50 + 3;					// O(1)
+
+  for (let i = 0; i < input.length; i++) {	// O(n): depends on length of input
+    anotherFunction();				// O(n)
+    let stranger = true;			// O(n)
+    a++;					// O(n)
+  }
+  return a;					//O(1)
+}
+
+funcChallenge(array);
+
+3 + n + n + n + n
+BIG O(3 + 4n)
+---------------------------------------------------------
+
+
+# What is BigO of the below function?
+---------------------------------------------------------
+function anotherFunChallenge(input) {
+  let a = 5; //O(1)
+  let b = 10; //O(1)
+  let c = 50; //O(1)
+  for (let i = 0; i < input; i++) { //O(n)
+    let x = i + 1;	//O(n)
+    let y = i + 2;	//O(n)
+    let z = i + 3;	//O(n)
+
+  }
+  for (let j = 0; j < input; j++) { //O(n)
+    let p = j * 2;	//O(n)
+    let q = j * 2;	//O(n)
+  }
+  let whoAmI = "I don't know";		//O(1)
+}
+
+anotherFunChallenge(input);
+
+BIG O(4 + 7n)
+---------------------------------------------------------
+
+## Rules (BIG O):
+Rule 1: worst case. In scheme of BIG O, we always consider worst case.
+	[in case of linear search:
+	 if element is at last place then it is worst case, and 
+	 if element is at first location then it is best case ].
+Rule 2: Remove constants : 
+	consider this example O(2 + n/2 + 100), in this example remove the constants, then it will be O(n)
+	O(n + n)= O(2n), remove or drop the constants then it will become O(n)
+Rule 3: Different terms for inputs
+Rule 4: Drop Non Dominants
+
+
+# Rule 3: Example
+
+---------------------------------------------------------
+function compressBoxesTwice(boxes) {
+  boxes.forEach(function(boxes) {
+     console.log(boxes);
+  });
+
+  boxes.forEach(function(boxes) {
+     console.log(boxes);
+  });
+}
+
+BIG O(n + n)
+O(2n)
+As per Rule 2: Drop Constants, i,e. O(n)
+
+BIG O (n/2):
+is still O(n)
+---------------------------------------------------------
+
+Suppose we have second parameter:
+---------------------------------------------------------
+function compressBoxesTwice(boxes, boxes2) {
+  boxes.forEach(function(boxes) {	//First loop may have n boxes, thus O(n)
+     console.log(boxes);
+  });
+
+  boxes2.forEach(function(boxes2) {	// Second loop is not equal to first, it may be less or more than first. So we have to choose different variable
+     console.log(boxes2);		// thus O(m)
+  });
+}
+
+BIG O(n + m)
+---------------------------------------------------------
+
+# Nested arrays
+---------------------------------------------------------
+//Log all pairs of array
+
+const boxes = ['a','b','c','d','e'];
+
+function logAllPairsOfArray(array) {
+  for (let i= 0; i<array.len; i++) {
+    for(let j = 0; j<array.len; j++) {
+	console.log(array[i],array[j]);
+    }
+  }
+}
+
+logAllPairsofArray(boxes);
+
+O(n * n)
+O(n ^ 2)
+
+In previous example if boxes2 is executed in boxes loop then BIG O will be O(n * m). If 
+two loop are separated then it BIG O(n +  m).
+---------------------------------------------------------
+
+# Rule 4: rule drop non dominant
+---------------------------------------------------------
+function printAllNumbersThenAllPairsSums(boxes) {
+
+  boxes.forEach(function(boxes) {	//First loop may have n boxes, thus O(n)
+     console.log(boxes);
+  });
+
+  boxes.forEach(function(firstNumber) {		// Nested loop O(n *n), which is O(n ^ 2)
+    boxes.forEach(function(secondNumber) {
+      console.log(firstNumber + secondNumber);
+    });
+  });
+
+}
+
+printAllNumberTHenAllPairsSums([1,2,3,4,5]);
+
+BIG O (n + n ^ 2);
+As per rule, drop non Dominant. So Drop n
+then 
+O(n ^ 2)
+
+
+Another Example:
+O(x^2+3x+100+x/2)
+
+As per rules: Drop all non dominants: As BIG O is worried about scalability
+O(x^2)
+---------------------------------------------------------
+
+Link: bigocheatsheet.com
+Refer this link for DataStructures and their Time Complexity and space complexity
+
+Which Code is best?
+Readable
+Memory: Space Complexity, less memory foot print
+HEAP:
+STACK:
+Speed: Time Complexity, Scalable code
+
+
+What Causes Space Complexity?
+Variables
+Data Structures
+Function Call
+Allocations
+
+Example: 1
+---------------------------------------------------------
+function print(n) {
+ for(let i = 0; i < n.length; i++) {	// This function allocated one variable i O(1)
+   console.log('print');
+ }
+}
+
+print([1,2,3,4,5]);	// For space complexity, input is not considered
+
+Space Complexity of this function is: O(1)
+---------------------------------------------------------
+
+Example: 2
+---------------------------------------------------------
+function arrayOfHiNTimes(n) {
+ let hiArray =[];			// Creating data structure, of size n O(n)
+
+ for(let i=0; i<n.length; i++) {	// let i: O(1)
+  hiArray[i] = 'hi';
+ }
+
+ return hiArray;
+}
+
+arrrayOfHiNTimes(6);
+
+Space Complexity is O(n + 1) which is O(n)
+---------------------------------------------------------
+
+# O(n!): Most expensive and steepest in Big O curve
+Adding loop for every element
+---------------------------------------------------------
+
+
+Arrays
+----------------
+Access: O(1)
+Insertion: (Insetion at end): O(1): if we know last array index
+Deletion: (Deletion at end): O(1): if we know last array index
+
