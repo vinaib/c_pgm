@@ -279,4 +279,16 @@ Arrays
 Access: O(1)
 Insertion: (Insetion at end): O(1): if we know last array index
 Deletion: (Deletion at end): O(1): if we know last array index
+Additionally as arrays are sequential, it has advantages of CPU cache, where as
+linked lists are scattered they are not seuqential.								   
 
+
+Linked lists
+---------------
+head: holds head pointer
+tail: holds last node pointer
+Access/lookup/traversal: O(n)
+Insertion at first node/prepend: O(1)
+insert at end/append: O(1)
+insert: O(n)
+delete: O(n)
