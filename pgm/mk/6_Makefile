@@ -1,0 +1,6 @@
+# execute shell command in Makefile
+
+FILES=$(shell ls)
+
+ls:
+	echo $(FILES)

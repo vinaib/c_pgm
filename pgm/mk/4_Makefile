@@ -1,0 +1,34 @@
+# refer for makefile: http://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/
+
+# for unused variables warnings use -Wextra
+
+# version 4: Use of special macrso $@ and $^
+# SPECIAL MACROS:
+# $< is the first item in the dependencies list, which is $(DEPS)
+# $@ and $^: which are the left and right sides of the :
+CC=gcc
+IDIR=../include
+CFLAGS=-I$(IDIR)
+
+_DEPS=func_1.h func_2.h
+DEPS=$(patsubst %,$(IDIR)/%,$(_DEPS))
+
+OBJ=func_1.o func_2.o hash.o
+
+%.o: %.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+ht: $(OBJ)
+	$(CC) -o $@ $^ $(CFLAGS)
+	
+c:
+	gcc -v -c hash.c
+
+s:
+	gcc -v -S hash.c
+
+e:
+	gcc -v -E hash.c -o hash.i
+
+clean:
+	rm -rf ht *.o *.s *.i

@@ -1,0 +1,36 @@
+# refer for makefile: http://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/
+
+# for unused variables warnings use -Wextra
+
+# version 3: creating dependency on include files. If include file is modified
+# then source files which includes modified header file is forced to recompile
+# DEPS is macro, contains list of all header files.
+# Define rule that applies to all files ending .o suffix (%.o). The rule says
+# that the .o file depends upon the .c version of the file and the .h files
+# included in the DEPS macro (%.o: %.c $(DEPS))
+
+CC=gcc
+IDIR=../include
+CFLAGS=-I$(IDIR)
+
+_DEPS=func_1.h func_2.h
+DEPS=$(patsubst %,$(IDIR)/%,$(_DEPS))
+
+#wildcard %: matching any number of characters with in a word.
+%.o: %.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+ht: func_1.o func_2.o hash.o	
+	$(CC) -Wall -Wextra -Werror hash.o func_1.o func_2.o -o ht $(CFLAGS)
+
+c:
+	gcc -v -c hash.c
+
+s:
+	gcc -v -S hash.c
+
+e:
+	gcc -v -E hash.c -o hash.i
+
+clean:
+	rm -rf ht *.o *.s *.i

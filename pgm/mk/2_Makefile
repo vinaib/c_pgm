@@ -1,0 +1,25 @@
+# refer for makefile: http://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/
+
+# for unused variables warnings use -Wextra
+
+# version 2: specifying object files in dependency list will compile c files
+# only if there is any modification in source files, else it will use previously
+# compiled object file.
+# defined following macroes: CC, CFLAGS
+CC=gcc
+CFLAGS=-I../include
+
+ht: func_1.o func_2.o hash.o
+	$(CC) -Wall -Wextra -Werror hash.o func_1.o func_2.o -o ht $(CFLAGS)
+
+c:
+	gcc -v -c hash.c
+
+s:
+	gcc -v -S hash.c
+
+e:
+	gcc -v -E hash.c -o hash.i
+
+clean:
+	rm -rf ht *.o *.s *.i
