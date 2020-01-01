@@ -9,3 +9,12 @@ set autoindent
 set smartindent
 set cindent
 
+"Hitting arrow keys adds characters is fixed by set nocompatible
+set nocompatible
+
+"fixing backspace 
+set backspace=indent,eol,start
+
+syntax on
+
+colorscheme desert
