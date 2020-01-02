@@ -1,0 +1,114 @@
+Coredump
+--------
+A coredump is a snapshot of memory at the instant the program crashed, typically
+saved in a file called "core". The core contains the memory contents of the
+process at the point of the seg-fault including its:
+code segment
+data segment
+stack segment
+heap segment
+
+Uses:
+-----
+Allows user for off-site analysis
+
+where to find coredump?
+-----------------------
+Each process has various limits associated with it.
+man setrlimit
+
+if RLIMIT_CORE is 0, core dump files are not created. When non zero, larger
+dumps are truncated to this size.
+
+to view current process limits, execute following command
+----------------------------------------------------------
+ulimit -a
+
+# set coredump file size to unlimited
+ulimit -c unlimited
+
+# can be verified by 
+ulimit -a
+
+Once coresize limit is set, core is generated in current working directory of
+process.
+
+What to do with core files?
+---------------------------
+core files can be examined with gdb. It can read the crash information and
+display the backtrace that leads to the crash.
+
+$ gdb /path/to/binary /path/to/core/file
+
+Generate core for a running process, to take a snapshot of the memory
+---------------------------------------------------------------------
+(gdb) attach <pid>
+(gdb) generate-core-file <optional-filename>
+(gdb) detach
+
+above sequence command will not kill the process, the process will continously
+running.
+
+Other way of generating core dump is send signal to process. This will terminate
+--------------------------------------------------------------------------------
+the process.
+------------
+
+kill -s SIGABRT <pid>
+
+Dumping core from within the program
+------------------------------------
+void dump_core_and_terminate(void)
+{
+	/* char *p = NULL; *p = 0; */
+	abort();							# generate core dump
+}
+
+Common Memory Issues in C programming
+-------------------------------------
+# Incorrect memory accesses
+## Using uninitialized variables
+## out-of-bounds memory accesses (read/write underflow/overflow bugs)
+### write overflow: write is attempted into a memory buffer after its last
+legally accessible location
+### write underflow: Write is attempted into a memory buffer before its first
+legally accessible location
+### Read underflow: A read is attempted on a memory buffer before its first
+legally accessible location
+### Read underflow: A read is attempted on a memory buffer after its first
+legally accessible location
+## use-after-free/use-after-return (out of scope) bugs
+## dobule-free
+# leakage
+# undefined behavior
+# Data races
+
+Valgrind
+--------
+It is a wrapper around various tools for debugging and profiling, best tool out
+of these is MemCheck that is used to find out memory leaks etc. For valgrind too
+we have to use -g switch.
+
+$ gcc -o 1 1.c -g
+$ valgrind --tool=memcheck --leak-check=yes ./1
+
+Pros:
+-----
+Ctaches common memory bugs on dynamically allocated memory regions
+Using uninitalized variables
+out-of bounds memory access(read/write/underflow/overflow)
+use-after-free/use after return (out of scope) bugs
+double free
+leakage
+
+Cons
+----
+Performance: target sw may run up to 10 to 3o times slower than when run under
+valgrind
+
+Memory footprint: each allocation within the target program requires valgrind to
+make a memory allocation as well(making running valgrind on
+		highly-resource-constrained embedded linux systems difficult)
+
+In order to see the call stack with line-number information, a recompile/build
+with the -g flag is required.
