@@ -1,7 +1,8 @@
 #ifndef __LIST_H
 #define __LIST_H
 
-#define ONE_MEMBER 1
+#define ZERO 0
+#define ONE 1
 
 /* SLL NODE */
 typedef struct node {
@@ -68,14 +69,14 @@ bool delete_last_node();
  *
  * Returns true on success else false on failure
  */
-bool insert_node_at_idx(int val);
+bool insert_node_at_idx(unsigned int idx, int val);
 
 /*
  * Function: delete_node_at_idx
  * Delete node at given index, and decrement n_ele by 1.
  * Returns true on success else false on failure
  */
-bool delete_node_at_idx();
+bool delete_node_at_idx(unsigned int idx);
 
 /*
  * Function: search_node()

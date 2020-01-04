@@ -45,7 +45,7 @@ bool is_list_empty()
 
 NODE_T* alloc_node()
 {
-	return (NODE_T*)calloc(ONE_MEMBER, sizeof(NODE_T));
+	return (NODE_T*)calloc(ONE, sizeof(NODE_T));
 }
 
 bool insert_node_at_first(int val)
@@ -196,18 +196,112 @@ exit_func:
 	return ret;
 }
 
-bool insert_node_at_idx(int val)
+bool insert_node_at_idx(unsigned int idx, int val)
 {
-	printf("%s\n", __func__);
+	bool ret = false;
+	NODE_T *pnew;
+	NODE_T *pcur;
+	NODE_T *pprev;
 
-	return 0;
+	if(!get_sll()) { 
+		printf("Initialize SLL before using it ...\n");
+		goto exit_func;
+	}
+
+	if(idx == ZERO) {
+		/* not a valid idx[1 ... n] */
+		goto exit_func;
+	}
+	else if( (idx == ONE) ||
+			 (is_list_empty())) {
+		insert_node_at_first(val);
+		ret = true;
+		goto exit_func;
+	}
+
+	pcur = pprev = get_sll()->head;
+
+	while((idx != ONE) && (pcur->next != NULL)) {
+		pprev = pcur;
+		pcur = pcur->next;	
+		--idx;
+	}
+
+	if(idx != ONE) {
+		insert_node_at_last(val);
+		ret = true;
+		goto exit_func;
+	}
+
+	/* else insert at idx */
+	pnew = alloc_node();
+	if(!pnew) {
+		printf("Insufficient memory ...\n");
+		goto exit_func;
+	}
+
+	pnew->data = val;
+	
+	pnew->next = pcur;
+	pprev->next = pnew;
+
+	get_sll()->n_ele += 1;
+
+	ret = true;
+
+exit_func:		
+	return ret;
 }
 
-bool delete_node_at_idx()
+bool delete_node_at_idx(unsigned int idx)
 {
-	printf("%s\n", __func__);
+	bool ret = false;
+	NODE_T *pcur;
+	NODE_T *pprev;
 
-	return 0;
+	if(!get_sll()) { 
+		printf("Initialize SLL before using it ...\n");
+		goto exit_func;
+	}
+
+	if(is_list_empty()) {
+		printf("SLL is empty\n");
+		goto exit_func;
+	}
+
+	if(idx == ZERO) {
+		goto exit_func;
+	}
+	else if(idx == ONE) {
+		delete_first_node();
+		ret = true;
+		goto exit_func;
+	}
+
+	pcur = pprev = get_sll()->head;
+
+	while((idx != ONE) && (pcur->next != NULL)) {
+		pprev = pcur;
+		pcur = pcur->next;
+		--idx;
+	}
+
+	/* After loop traversal:
+	 * pcur points to idx node to be deleted 
+	 */
+	pprev->next = pcur->next;
+
+	/* update tail */
+	if(idx != ONE) {
+		get_sll()->tail = pprev;
+	}
+
+	free(pcur);
+
+	get_sll()->n_ele -= 1;
+
+exit_func:
+	return ret;
 }
 
 int search_node()

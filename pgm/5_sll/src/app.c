@@ -5,7 +5,7 @@
 
 int main(void)
 {
-	int ch;
+	unsigned int ch;
 	int loop_iter = 0;
 	
 	bool ret = init_sll();
@@ -29,15 +29,21 @@ int main(void)
 		printf("8 Print SLL\n");
 		printf("0 for exit\n");
 		printf("Enter your choice: ");
-		scanf("%d", &ch);
+		scanf("%u", &ch);
 		
 		switch(ch) {
 			case 1: insert_node_at_first(loop_iter); break;
 			case 2: delete_first_node(); break;
 			case 3: insert_node_at_last(loop_iter); break;
 			case 4: delete_last_node(); break;
-			case 5: insert_node_at_idx(loop_iter); break;
-			case 6: delete_node_at_idx(); break;
+			case 5: printf("Enter idx: ");
+					scanf("%u", &ch);
+					insert_node_at_idx(ch, loop_iter); 
+					break;
+			case 6: printf("Enter idx: ");
+					scanf("%u", &ch);
+					delete_node_at_idx(ch); 
+					break;
 			case 7: search_node(); break;
 			case 8: print_sll(); break;
 			case 0: goto m_exit_1;
