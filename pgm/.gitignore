@@ -1,3 +1,5 @@
 *.swp
 *.orig
 a.out
+obj
+app
