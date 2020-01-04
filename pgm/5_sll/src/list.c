@@ -10,30 +10,14 @@ bool init_sll()
 	Sll = (SLL_T*)malloc(sizeof(SLL_T));
 
 	if(Sll != NULL) {
-		Sll->head = alloc_node();
-		if(Sll->head == NULL) {
-			goto exit_func;
-		}
-
-		Sll->tail = alloc_node();
-		if(Sll->tail == NULL) {
-			goto exit_func1;
-		}
-
+		Sll->head = NULL;
+		Sll->tail = NULL;
 		Sll->n_ele = 0;
+
 		ret = true;
 
 		goto success;
 	}
-
-
-exit_func1:
-	free(Sll->head);
-	Sll->head = NULL;
-
-exit_func:
-	free(Sll);
-	Sll = NULL;
 
 success:
 	return ret;
@@ -47,36 +31,27 @@ SLL_T *get_sll()
 void free_sll()
 {
 	if(get_sll()) {
-		free(Sll->head);
-		free(Sll->tail);
 		free(Sll);
-		Sll = NULL;
 	}
 
 	return;
 }
 
+bool is_list_empty()
+{
+	return ((get_sll()->head == NULL) && 
+			(get_sll()->tail == NULL));
+}
+
 NODE_T* alloc_node()
 {
-	NODE_T *pnew = NULL;
-
-	printf("%s\n", __func__);
-
-	pnew = (NODE_T*)malloc(sizeof(NODE_T));
-	if(!pnew) {
-		pnew->next = NULL;
-		pnew->data = 0;
-	}
-
-	return pnew;
+	return (NODE_T*)calloc(ONE_MEMBER, sizeof(NODE_T));
 }
 
 bool insert_node_at_first(int val)
 {
 	bool ret = false;
 	NODE_T *pnew;
-
-	printf("%s\n", __func__);
 
 	if(!get_sll()) {
 		printf("Initialize SLL before using it\n");
@@ -92,7 +67,7 @@ bool insert_node_at_first(int val)
 	pnew->data = val;
 
 	/* is list empty */
-	if(get_sll()->head == NULL) {
+	if(is_list_empty()) {
 		get_sll()->head = get_sll()->tail = pnew;
 	} else {
 		/* Update Sll */
@@ -113,14 +88,13 @@ bool delete_first_node()
 	bool ret = false;
 	NODE_T *ptmp;
 
-	printf("%s\n", __func__);
 	if(!get_sll()) {
 		printf("Initialize SLL before using it ...\n");
 		goto exit_func;
 	}
 
 	/* is list empty */
-	if(get_sll()->head == NULL) {
+	if(is_list_empty()) {
 		printf("SLL is empty\n");
 		goto exit_func;
 	}
@@ -128,6 +102,10 @@ bool delete_first_node()
 	/* make head point to second node */
 	ptmp = get_sll()->head;
 	get_sll()->head = ptmp->next;
+
+	/* When list gets empty both head and tail is null */
+	if(get_sll()->head == NULL)
+		get_sll()->tail = NULL;
 
 	free(ptmp);
 
@@ -144,7 +122,6 @@ bool insert_node_at_last(int val)
 	bool ret = false;
 	NODE_T *pnew;
 
-	printf("%s\n", __func__);
 	if(!get_sll()) {
 		printf("Initialize SLL before using it ...\n");
 		goto exit_func;
@@ -159,7 +136,7 @@ bool insert_node_at_last(int val)
 	pnew->data = val;
 
 	/* is list empty */
-	if(get_sll()->head == NULL) {
+	if(is_list_empty()) {
 		get_sll()->head = get_sll()->tail = pnew;
 	} else {
 		/* insert node at last and update tail */
@@ -181,21 +158,19 @@ bool delete_last_node()
 	NODE_T *pcur;
 	NODE_T *pprev;
 
-	printf("%s\n", __func__);
 	if(!get_sll()) {
 		printf("Initialize SLL before using it ...\n");
 		goto exit_func;
 	}
 	
 	/* is list empty */
-	if(get_sll()->head == NULL) {
-		printf("list is empty no node to delete\n");
+	if(is_list_empty()) {
+		printf("SLL is empty\n");
 		goto exit_func_1;
 	} else if(get_sll()->head == get_sll()->tail) {
 		/* only one node in SLL */
 		pcur = get_sll()->tail;		// can be head too
 		get_sll()->head = get_sll()->tail = NULL;
-		free(pcur);
 	} else {
 		pcur = get_sll()->head;
 		pprev = get_sll()->head;
@@ -206,10 +181,12 @@ bool delete_last_node()
 			pcur = pcur->next;
 		}
 
+		/* update tail */
+		get_sll()->tail = pprev;
 		pprev->next = NULL;
-		free(pcur);
 	}
 	
+	free(pcur);
 	get_sll()->n_ele -= 1;
 
 exit_func_1:
@@ -242,7 +219,6 @@ int search_node()
 
 void print_sll()
 {
-	int elements;
 	NODE_T *ptmp;
 
 	if(!get_sll()) { 
@@ -250,19 +226,13 @@ void print_sll()
 		goto exit_func;
 	}
 
-	elements = get_sll()->n_ele;
-
-	if(elements == 0) {
+	if(is_list_empty()) {
 		printf("SLL is empty\n");
 		goto exit_func;
 	}
 
-	ptmp = get_sll()->head->next;
-
-	if(elements == 1) {
-		printf("%d \n", ptmp->data);
-		goto exit_func;
-	}
+	/* grab first element */
+	ptmp = get_sll()->head;
 
 	while(ptmp != NULL)
 	{

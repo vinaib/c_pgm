@@ -1,6 +1,8 @@
 #ifndef __LIST_H
 #define __LIST_H
 
+#define ONE_MEMBER 1
+
 /* SLL NODE */
 typedef struct node {
 	struct node* next;
@@ -22,6 +24,12 @@ SLL_T *Sll;
  * Returns true on Success else false on failure
  */
 bool init_sll();
+
+/*
+ * Function: is_list_empty()
+ * returns true if head and tail are NULL
+ */
+bool is_list_empty();
 
 /*
  * Function: insert_node_at_first()
