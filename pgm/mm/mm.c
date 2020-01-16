@@ -12,6 +12,7 @@
  * segments
  */
 #include<stdio.h>
+#include<unistd.h>
 
 long global 	= 1;		
 long global_1 	= 0;
@@ -19,6 +20,17 @@ long global_1 	= 0;
 int main(void)
 {
 	static long st_long = 3;
+	int local;
+
+	printf("hello world\n");
+
+	global = local;
+
+	global++;
+
+	while(1) {
+		sleep(10);
+	}
 
 	return 0;
 }

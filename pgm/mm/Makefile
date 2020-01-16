@@ -6,10 +6,10 @@ STK_OBJ=stk_smash.o
 vinai: mm_exe stk_exe
 
 %.o: %.c
-	$(CC) -c -o $@ $< $(CFLAGS)
+	$(CC) -g -c -o $@ $< $(CFLAGS)
 
 mm_exe: $(MM_OBJ)
-	$(CC) -o $@ $^ $(CFLAGS)
+	$(CC) -g -o $@ $^ $(CFLAGS)
 
 stk_exe: $(STK_OBJ)
 	$(CC) -o $@ $^ $(CFLAGS)
