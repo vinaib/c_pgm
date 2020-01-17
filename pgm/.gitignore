@@ -4,3 +4,4 @@ a.out
 obj
 app
 *.o
+*_exe
