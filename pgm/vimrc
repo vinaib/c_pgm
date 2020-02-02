@@ -18,3 +18,9 @@ set backspace=indent,eol,start
 syntax on
 
 colorscheme desert
+
+" to remove line numbers
+"set nonumber
+
+" set tags
+" set tags=<tag_file_path>
