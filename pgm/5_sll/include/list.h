@@ -16,28 +16,27 @@ typedef struct _sll {
 	int n_ele;
 }SLL_T;
 
-SLL_T *Sll;
 
 /*
  * Function: init_sll()
  * Initializes sll data struct, Should be called first before using any
  * routines.
- * Returns true on Success else false on failure
+ * Returns pointer on Success else NULL on failure
  */
-bool init_sll();
+SLL_T *init_sll();
 
 /*
  * Function: is_list_empty()
  * returns true if head and tail are NULL
  */
-bool is_list_empty();
+bool is_list_empty(SLL_T *sll);
 
 /*
  * Function: insert_node_at_first()
  * Use this function to insert node after head. Update the head pointer to point
  * this node and increase n_ele by 1
  */
-bool insert_node_at_first(int val);
+bool insert_node_at_first(SLL_T *sll, int val);
 
 /*
  * Function: delete_first_node()
@@ -45,14 +44,14 @@ bool insert_node_at_first(int val);
  * n_ele by 1.
  * Returns true on success else false on failure
  */
-bool delete_first_node();
+bool delete_first_node(SLL_T *sll);
 
 /*
  * Function: insert_node_at_last()
  * Insert node at last and update the tail pointer and increment n_ele by 1.
  * Returns 
  */
-bool insert_node_at_last(int val);
+bool insert_node_at_last(SLL_T *sll, int val);
 
 /*
  * Function: delete_last_node()
@@ -61,7 +60,7 @@ bool insert_node_at_last(int val);
  *
  * Returns true on success else false on failure
  */
-bool delete_last_node();
+bool delete_last_node(SLL_T *sll);
 
 /*
  * Function: insert_node_at_idx()
@@ -69,14 +68,14 @@ bool delete_last_node();
  *
  * Returns true on success else false on failure
  */
-bool insert_node_at_idx(unsigned int idx, int val);
+bool insert_node_at_idx(SLL_T *sll, unsigned int idx, int val);
 
 /*
  * Function: delete_node_at_idx
  * Delete node at given index, and decrement n_ele by 1.
  * Returns true on success else false on failure
  */
-bool delete_node_at_idx(unsigned int idx);
+bool delete_node_at_idx(SLL_T *sll, unsigned int idx);
 
 /*
  * Function: search_node()
@@ -84,13 +83,13 @@ bool delete_node_at_idx(unsigned int idx);
  *
  * Returns: index/postion of the given value in SLL else 0 on failure.
  */
-int search_node();
+int search_node(SLL_T *sll);
 
 /* 
  * Function: print_sll();
  * Print all element of SLL
  */
-void print_sll();
+void print_sll(SLL_T *sll);
 
 /*
  * Function: alloc_node()
@@ -100,15 +99,9 @@ void print_sll();
 NODE_T* alloc_node();
 
 /*
- * Function: get_sll()
- * use this function to access Sll object.
- */
-SLL_T *get_sll();
-
-/*
  * Function free_sll()
  * Should be called as part of clean up
  */
-void free_sll();
+SLL_T *free_sll(SLL_T *sll);
 
 #endif

@@ -7,13 +7,11 @@ int main(void)
 {
 	unsigned int ch;
 	int loop_iter = 0;
-	
-	bool ret = init_sll();
-	if(ret == false) 
-		printf("init_sll failed\n");
 
-	if(!get_sll()) {
-		printf("SLL is empty\n");
+	SLL_T *sll = init_sll(); 
+	
+	if(sll  == NULL) {
+		printf("NOMEM: INIT FAIL\n");
 		goto m_exit;
 	}
 
@@ -32,29 +30,28 @@ int main(void)
 		scanf("%u", &ch);
 		
 		switch(ch) {
-			case 1: insert_node_at_first(loop_iter); break;
-			case 2: delete_first_node(); break;
-			case 3: insert_node_at_last(loop_iter); break;
-			case 4: delete_last_node(); break;
+			case 1: insert_node_at_first(sll, loop_iter); break;
+			case 2: delete_first_node(sll); break;
+			case 3: insert_node_at_last(sll, loop_iter); break;
+			case 4: delete_last_node(sll); break;
 			case 5: printf("Enter idx: ");
 					scanf("%u", &ch);
-					insert_node_at_idx(ch, loop_iter); 
+					insert_node_at_idx(sll, ch, loop_iter); 
 					break;
 			case 6: printf("Enter idx: ");
 					scanf("%u", &ch);
-					delete_node_at_idx(ch); 
+					delete_node_at_idx(sll, ch); 
 					break;
-			case 7: search_node(); break;
-			case 8: print_sll(); break;
+			case 7: search_node(sll); break;
+			case 8: print_sll(sll); break;
 			case 0: goto m_exit_1;
 			default: printf("Enter proper choice ...\n");
 		}
 	}
-m_exit_1:
-	free_sll();
 
-	if(!get_sll()) {
-		printf("SLL freed\n");
+m_exit_1:
+	if(free_sll(sll) == NULL) {
+		printf("SLL FREE\n");
 	}
 
 m_exit:
