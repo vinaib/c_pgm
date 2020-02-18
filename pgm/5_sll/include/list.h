@@ -32,14 +32,14 @@ SLL_T *init_sll();
 bool is_list_empty(SLL_T *sll);
 
 /*
- * Function: insert_node_at_first()
+ * Function: insert_node_at_first() O(1)
  * Use this function to insert node after head. Update the head pointer to point
  * this node and increase n_ele by 1
  */
 bool insert_node_at_first(SLL_T *sll, int val);
 
 /*
- * Function: delete_first_node()
+ * Function: delete_first_node() O(1)
  * Delete first node and update the head to point to next node and decrement
  * n_ele by 1.
  * Returns true on success else false on failure
@@ -47,14 +47,14 @@ bool insert_node_at_first(SLL_T *sll, int val);
 bool delete_first_node(SLL_T *sll);
 
 /*
- * Function: insert_node_at_last()
+ * Function: insert_node_at_last() O(1)
  * Insert node at last and update the tail pointer and increment n_ele by 1.
  * Returns 
  */
 bool insert_node_at_last(SLL_T *sll, int val);
 
 /*
- * Function: delete_last_node()
+ * Function: delete_last_node() O(1)
  * deletes last node by pointing tail to previous last but one node and
  * decrement n_ele by 1.
  *
@@ -63,7 +63,7 @@ bool insert_node_at_last(SLL_T *sll, int val);
 bool delete_last_node(SLL_T *sll);
 
 /*
- * Function: insert_node_at_idx()
+ * Function: insert_node_at_idx() O(n)
  * Insert node at given index/location and update the n_ele
  *
  * Returns true on success else false on failure
@@ -71,14 +71,14 @@ bool delete_last_node(SLL_T *sll);
 bool insert_node_at_idx(SLL_T *sll, unsigned int idx, int val);
 
 /*
- * Function: delete_node_at_idx
+ * Function: delete_node_at_idx O(n)
  * Delete node at given index, and decrement n_ele by 1.
  * Returns true on success else false on failure
  */
 bool delete_node_at_idx(SLL_T *sll, unsigned int idx);
 
 /*
- * Function: search_node()
+ * Function: search_node() O(n)
  * search node by given value
  *
  * Returns: index/postion of the given value in SLL else 0 on failure.
@@ -86,20 +86,20 @@ bool delete_node_at_idx(SLL_T *sll, unsigned int idx);
 int search_node(SLL_T *sll);
 
 /* 
- * Function: print_sll();
+ * Function: print_sll(); O(n)
  * Print all element of SLL
  */
 void print_sll(SLL_T *sll);
 
 /*
- * Function: alloc_node()
+ * Function: alloc_node() O(1)
  * Allocate new free node and initialize next to Null
  * returns pointer to new node, else NULL on failure
  */
 NODE_T* alloc_node();
 
 /*
- * Function free_sll()
+ * Function free_sll() O(1)
  * Should be called as part of clean up
  */
 SLL_T *free_sll(SLL_T *sll);
