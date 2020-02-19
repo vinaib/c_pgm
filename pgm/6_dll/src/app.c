@@ -21,12 +21,13 @@ int main(void)
         ++loop_iter;    
         printf("1 Insert node as first node\n");    
         printf("2 delete first node\n");    
-        printf("3 Insret node as last node\n");                             
+        printf("3 Insert node as last node\n");                             
         printf("4 delete last node\n");    
-        printf("5 Insret node at idx\n");              
+        printf("5 Insert node at idx\n");              
         printf("6 delete node at idx\n");    
         printf("7 search data\n");    
-        printf("8 Print dLL\n");    
+        printf("8 traverse forward\n");    
+        printf("9 traverse backward\n");    
         printf("0 for exit\n");    
         printf("Enter your choice: ");    
         scanf("%u", &ch);                     
@@ -34,9 +35,9 @@ int main(void)
         switch(ch) {               
             case 1: insert_node_at_first(dll, loop_iter); break;    
             case 2: delete_first_node(dll); break;    
-#if 0					
             case 3: insert_node_at_last(dll, loop_iter); break;   
             case 4: delete_last_node(dll); break;                                    
+#if 0					
             case 5: printf("Enter idx: ");    
                     scanf("%u", &ch);    
                     insert_node_at_idx(dll, ch, loop_iter);    
@@ -48,6 +49,7 @@ int main(void)
             case 7: search_node(dll); break;         
 #endif					
             case 8: traverse_forward_dll(dll); break;    
+            case 9: traverse_backward_dll(dll); break;    
             case 0: goto exit_func;     
             default: printf("Enter proper choice ...\n");    
         }    

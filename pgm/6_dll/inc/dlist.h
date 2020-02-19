@@ -59,4 +59,19 @@ void traverse_forward_dll(DLL_T *dll);
  */
 void traverse_backward_dll(DLL_T *dll);
 
+/* 
+ * Function: insert_node_at_last() O(1)
+ * Insert node at last and update the tail pointer and increment n_ele by 1.
+ * Returns
+ */
+bool insert_node_at_last(DLL_T *dll, int val);
+
+/*
+ * Function: delete_last_node() O(1)
+ * deletes last node by pointing tail to previous last but one node and 
+ * decrement n_ele by 1.
+ * Returns true on success else false on failure 
+ */
+bool delete_last_node(DLL_T *dll);
+
 #endif /* __DLIST_H_*/

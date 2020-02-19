@@ -19,9 +19,9 @@ int main(void)
 		++loop_iter;
 		printf("1 Insert node as first node\n");
 		printf("2 delete first node\n");
-		printf("3 Insret node as last node\n");
+		printf("3 Insert node as last node\n");
 		printf("4 delete last node\n");
-		printf("5 Insret node at idx\n");
+		printf("5 Insert node at idx\n");
 		printf("6 delete node at idx\n");
 		printf("7 search data\n");
 		printf("8 Print SLL\n");
