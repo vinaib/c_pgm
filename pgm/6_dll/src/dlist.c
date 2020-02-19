@@ -1,4 +1,7 @@
+#include<stdio.h>
+#include<stdbool.h>
 #include<stdlib.h>
+
 #include<dlist.h>
 
 #define ONE 1
@@ -35,11 +38,66 @@ bool insert_node_at_first(DLL_T *dll, int val)
 	pnew->val = val;
 
 	/* very first node */
-	if(dll->head->right == NULL) 
-		dll->tail->right = pnew;
+	if(dll->head == NULL) {
+		printf("Very first node\n");
+		dll->head = pnew;
+		dll->tail = pnew;
+	} else {
+		pnew->right = dll->head;
+		pnew->left = NULL;
+		dll->head = pnew;
+	}
 
-	pnew->right = dll->head->right;
+	ret = true;
 
 exit_func:
 	return ret;
+}
+
+
+bool delete_first_node(DLL_T *dll)
+{
+	bool ret = false;
+	DNODE_T *pdel;
+
+
+	if(dll == NULL)
+		goto exit_func;
+
+	/* no elements */
+	if(dll->head == NULL)
+		goto exit_func;
+
+	pdel = dll->head;
+
+	(pdel->right)->left = NULL;
+	dll->head = pdel->right;
+
+	free(pdel);
+
+	ret = true;		
+exit_func:
+	return ret;
+}
+
+
+void traverse_forward_dll(DLL_T *dll)
+{
+	DNODE_T *ptemp;
+
+	if(dll == NULL)
+		goto exit_func;
+
+	if(dll->head == NULL)
+		goto exit_func;
+
+	ptemp = dll->head;
+
+	while(ptemp != NULL) {
+		printf("data %d\n", ptemp->val);
+		ptemp=ptemp->right;
+	}
+
+exit_func:
+	return;
 }

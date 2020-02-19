@@ -1,9 +1,9 @@
-#ifdef __DLIST_H_
+#ifndef __DLIST_H_
 #define __DLIST_H_
 
-typedef struct __dnode {
-	DNODE_T *left;
-	DNODE_T *right;
+typedef struct _dnode {
+	struct _dnode *left;
+	struct _dnode *right;
 	int val;
 } DNODE_T;
 

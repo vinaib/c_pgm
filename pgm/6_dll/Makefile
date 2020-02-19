@@ -8,20 +8,20 @@
 # Directories
 ODIR=obj
 SDIR=src
-IDIR=include
+IDIR=inc
 
 CFLAGS=-I$(IDIR)
 CC=gcc
 FLAGS=-Wall -Werror
+
+_OBJ=dlist.o app.o
+_DEPS=dlist.h
 
 exe: tdir app
 
 # Create temporary directories
 tdir:
 	if [ ! -d obj ]; then mkdir obj; fi;
-
-_OBJ=dlist.o app.o
-_DEPS=dlist.h
 
 # Append obj/
 OBJ=$(patsubst %,$(ODIR)/%,$(_OBJ))
