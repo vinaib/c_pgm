@@ -4,6 +4,7 @@
 
 #include<dlist.h>
 
+#define ZERO 0
 #define ONE 1
 
 DLL_T *init_dll()
@@ -181,6 +182,81 @@ bool delete_last_node(DLL_T *dll)
 
 	ret = true;
 
+exit_func:
+	return ret;
+}
+
+bool insert_node_at_idx(DLL_T *dll, int idx, int val)
+{
+	bool ret = false;
+	DNODE_T *pnew;
+	DNODE_T *pcur = dll->head;
+
+	if(dll == NULL)
+		goto exit_func;
+
+	if(idx == ZERO || idx == ONE || is_list_empty(dll)) {
+		insert_node_at_first(dll, val);
+		goto exit_true;
+	}
+
+	while((idx != ONE) && (pcur != NULL)) { 
+		--idx; pcur = pcur->right;
+	}
+
+	if(idx != ONE) {
+		insert_node_at_last(dll, val);
+		goto exit_true;
+	}
+
+	/* insert at idx */
+	if((pnew = alloc_node()) == NULL)
+		goto exit_func;
+	
+	pnew->val = val;
+
+	pnew->right = pcur;
+	pnew->left = pcur->left;
+	(pcur->left)->right=pnew;
+	pcur->left = pnew;
+
+exit_true:
+	ret = true;
+exit_func:
+	return ret;
+}
+
+bool delete_node_at_idx(DLL_T *dll, int idx)
+{
+	bool ret = false;
+	DNODE_T *pcur = dll->head;
+
+	if(dll == NULL)
+		goto exit_func;
+
+	if(is_list_empty(dll)) goto exit_func;
+
+	if(idx == ZERO || idx == ONE) {
+		delete_first_node(dll);
+		goto exit_true;
+	}
+
+	while((idx != ONE) && (pcur != NULL)) {
+		--idx; pcur = pcur->right;
+	}
+
+	if(idx != ONE) {
+		delete_last_node(dll);
+		goto exit_true;
+	}
+
+	(pcur->right)->left = pcur->left;
+	pcur->left = pcur->right;
+
+	free(pcur);
+
+exit_true:
+	ret = true;
 exit_func:
 	return ret;
 }

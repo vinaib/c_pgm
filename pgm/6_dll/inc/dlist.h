@@ -74,4 +74,14 @@ bool insert_node_at_last(DLL_T *dll, int val);
  */
 bool delete_last_node(DLL_T *dll);
 
+/*
+ * Function: insert_node_at_idx()
+ */
+bool insert_node_at_idx(DLL_T *dll, int idx, int val);
+
+/*
+ * Function: delete_node_at_idx()
+ */
+bool delete_node_at_idx(DLL_T *dll, int idx);
+
 #endif /* __DLIST_H_*/

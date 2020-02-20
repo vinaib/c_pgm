@@ -185,7 +185,6 @@ bool insert_node_at_idx(SLL_T *sll, unsigned int idx, int val)
 	NODE_T *pprev;
 
 	if(!sll) { 
-		printf("INIT SLL\n");
 		goto exit_func;
 	}
 
@@ -196,8 +195,7 @@ bool insert_node_at_idx(SLL_T *sll, unsigned int idx, int val)
 	else if( (idx == ONE) ||
 			 (is_list_empty(sll))) {
 		insert_node_at_first(sll, val);
-		ret = true;
-		goto exit_func;
+		goto exit_true;
 	}
 
 	pcur = pprev = sll->head;
@@ -210,14 +208,12 @@ bool insert_node_at_idx(SLL_T *sll, unsigned int idx, int val)
 
 	if(idx != ONE) {
 		insert_node_at_last(sll,val);
-		ret = true;
-		goto exit_func;
+		goto exit_true;
 	}
 
 	/* else insert at idx */
 	pnew = alloc_node();
 	if(!pnew) {
-		printf("NOMEM\n");
 		goto exit_func;
 	}
 
@@ -227,7 +223,7 @@ bool insert_node_at_idx(SLL_T *sll, unsigned int idx, int val)
 	pprev->next = pnew;
 
 	sll->n_ele += 1;
-
+exit_true:
 	ret = true;
 
 exit_func:		

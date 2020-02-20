@@ -33,27 +33,27 @@ int main(void)
         scanf("%u", &ch);                     
        
         switch(ch) {               
-            case 1: insert_node_at_first(dll, loop_iter); break;    
-            case 2: delete_first_node(dll); break;    
-            case 3: insert_node_at_last(dll, loop_iter); break;   
-            case 4: delete_last_node(dll); break;                                    
-#if 0					
-            case 5: printf("Enter idx: ");    
-                    scanf("%u", &ch);    
-                    insert_node_at_idx(dll, ch, loop_iter);    
-                    break;    
-            case 6: printf("Enter idx: ");    
-                    scanf("%u", &ch);    
-                    delete_node_at_idx(dll, ch);                                 
-                    break;    
-            case 7: search_node(dll); break;         
-#endif					
-            case 8: traverse_forward_dll(dll); break;    
-            case 9: traverse_backward_dll(dll); break;    
-            case 0: goto exit_func;     
-            default: printf("Enter proper choice ...\n");    
-        }    
-    }                                       
+            case 1: insert_node_at_first(dll, loop_iter); break;
+            case 2: delete_first_node(dll); break;
+            case 3: insert_node_at_last(dll, loop_iter); break;
+            case 4: delete_last_node(dll); break;
+            case 5: printf("Enter idx: ");
+                    scanf("%u", &ch);
+                    insert_node_at_idx(dll, ch, loop_iter);
+                    break;
+            case 6: printf("Enter idx: ");
+                    scanf("%u", &ch);
+                    delete_node_at_idx(dll, ch);
+                    break;
+#if 0
+            case 7: search_node(dll); break;
+#endif
+            case 8: traverse_forward_dll(dll); break;
+            case 9: traverse_backward_dll(dll); break;
+            case 0: goto exit_func;
+            default: printf("Enter proper choice ...\n");
+        }
+    }
 
 	free(dll);
 
