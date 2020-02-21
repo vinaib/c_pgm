@@ -31,7 +31,7 @@ DEPS=$(patsubst %,$(IDIR)/%,$(_DEPS))
 
 # compile
 $(ODIR)/%.o: $(SDIR)/%.c $(DEPS)
-	$(CC) -c -o $@ $< $(FLAGS) $(CFLAGS)
+	$(CC) -c -g -o $@ $< $(FLAGS) $(CFLAGS)
 
 app: $(OBJ)
 	$(CC) -o $@ $^ $(FLAGS) $(CFLAGS)
