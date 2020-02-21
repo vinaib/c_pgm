@@ -4,6 +4,12 @@
 # $< - first item in depedency list
 # $* -
 #
+# Note on dynamic dll
+# see for -fPIC
+# -shared switch
+# place the dynamic dll in default location in /usr/lib or /usr/local/lib
+# run sudo ldconfig command: this command updates the database for dll lookup
+
 
 # Directories
 ODIR=obj

@@ -5,3 +5,7 @@ obj
 app
 *.o
 *_exe
+app_dlib
+app_slib
+dlib
+slib
