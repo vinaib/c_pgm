@@ -11,48 +11,43 @@ int main(void)
 	SLL_T *sll = init_sll(); 
 	
 	if(sll  == NULL) {
-		printf("NOMEM: INIT FAIL\n");
+		printf("INITFL\n");
 		goto m_exit;
 	}
 
 	for(;;) {
 		++loop_iter;
-		printf("1 Insert node as first node\n");
-		printf("2 delete first node\n");
-		printf("3 Insert node as last node\n");
-		printf("4 delete last node\n");
-		printf("5 Insert node at idx\n");
-		printf("6 delete node at idx\n");
-		printf("7 search data\n");
-		printf("8 Print SLL\n");
-		printf("0 for exit\n");
-		printf("Enter your choice: ");
+		printf("1:INF\t\t2:INL\t\t3:INIDX\t\t");
+		printf("4:DNF\t\t5:DNL\t\t6:DNIDX\t\t");
+		printf("7:PRN\t\t8:RVR\t\t9:SRCH\t\t");
+		printf("10:PREFL\t\t0:EXT\n");
+		printf("CHOICE: ");
 		scanf("%u", &ch);
 		
 		switch(ch) {
 			case 1: insert_node_at_first(sll, loop_iter); break;
-			case 2: delete_first_node(sll); break;
-			case 3: insert_node_at_last(sll, loop_iter); break;
-			case 4: delete_last_node(sll); break;
-			case 5: printf("Enter idx: ");
+			case 2: insert_node_at_last(sll, loop_iter); break;
+			case 3: printf("IDX: ");
 					scanf("%u", &ch);
 					insert_node_at_idx(sll, ch, loop_iter); 
 					break;
-			case 6: printf("Enter idx: ");
+			case 4: delete_first_node(sll); break;
+			case 5: delete_last_node(sll); break;
+			case 6: printf("IDX: ");
 					scanf("%u", &ch);
 					delete_node_at_idx(sll, ch); 
 					break;
-			case 7: search_node(sll); break;
-			case 8: print_sll(sll); break;
+			case 7: print_sll(sll); break;
+			case 8: reverse_list(sll); break;
+			case 9: search_node(sll); break;
+			case 10: list_prefill(sll, &loop_iter); break;
 			case 0: goto m_exit_1;
-			default: printf("Enter proper choice ...\n");
+			default: printf("CHOICE\n");
 		}
 	}
 
 m_exit_1:
-	if(free_sll(sll) == NULL) {
-		printf("SLL FREE\n");
-	}
+	free_sll(sll);
 
 m_exit:
 	return 0;

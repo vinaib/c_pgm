@@ -237,12 +237,10 @@ bool delete_node_at_idx(SLL_T *sll, unsigned int idx)
 	NODE_T *pprev;
 
 	if(!sll) { 
-		printf("INIT SLL\n");
 		goto exit_func;
 	}
 
 	if(is_list_empty(sll)) {
-		printf("EMPTY SLL\n");
 		goto exit_func;
 	}
 
@@ -293,12 +291,10 @@ void print_sll(SLL_T *sll)
 	NODE_T *ptmp;
 
 	if(!sll) { 
-		printf("INIT SLL\n");
 		goto exit_func;
 	}
 
 	if(is_list_empty(sll)) {
-		printf("EMPTY SLL\n");
 		goto exit_func;
 	}
 
@@ -307,11 +303,49 @@ void print_sll(SLL_T *sll)
 
 	while(ptmp != NULL)
 	{
-		printf("%d\n", ptmp->data);
+		printf("%d ", ptmp->data);
 		ptmp = ptmp->next;
 	}
+
+	printf("\n");
 
 exit_func:
 	return;
 }
 
+void reverse_list(SLL_T *sll)
+{
+	NODE_T *pcur = sll->head;
+	NODE_T *pnext = (sll->head)?(sll->head)->next:NULL;
+	NODE_T *ptemp;
+
+	if(sll == NULL || sll->head == NULL || sll->head->next == NULL)
+		goto exit_func;
+
+	while(pnext) {
+		ptemp = pnext->next;
+		pnext->next = pcur;
+		pcur = pnext;
+		pnext = ptemp;
+	}
+
+	(sll->head)->next = NULL;	/* last node next should be null */
+	sll->tail = sll->head;
+	sll->head = pcur;
+
+exit_func:
+	return;
+}
+
+void list_prefill(SLL_T *sll, int *start_val)
+{
+	insert_node_at_first(sll, 1);
+	insert_node_at_first(sll, 2);
+	insert_node_at_first(sll, 3);
+	insert_node_at_last(sll, 4);
+	insert_node_at_last(sll, 5);
+	insert_node_at_last(sll, 6);
+	insert_node_at_idx(sll, 2, 22);
+	insert_node_at_idx(sll, 5, 55);
+	insert_node_at_idx(sll, 8, 88);
+}

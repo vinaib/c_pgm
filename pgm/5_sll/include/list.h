@@ -104,4 +104,15 @@ NODE_T* alloc_node();
  */
 SLL_T *free_sll(SLL_T *sll);
 
+/*
+ * Function: reverse_list() O(n)
+ * reverse a linked list. (not print in reverse)
+ * reverse pointers
+ */
+void reverse_list(SLL_T *sll);
+
+/*
+ * Function: list_prefill() O(1)
+ */
+void list_prefill(SLL_T *sll, int *start_val);
 #endif

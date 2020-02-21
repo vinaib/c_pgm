@@ -1,1 +1,18 @@
 https://visualgo.net/en/list
+
+Good at:
+---------------------
+-> fast insertion
+-> fast deletion
+-> ordered
+-> flexible size
+
+
+Bad at:
+--------------------
+-> slow lookup, no random access. When we have to find item we have to traverse
+the list. But with hash tables we can find away
+-> more memory
+
+
+
