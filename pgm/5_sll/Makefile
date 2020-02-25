@@ -35,20 +35,22 @@ lib: slib dlib
 apps: app app_slib app_dlib
 
 # Create temporary directories
-tdir:
+odir:
 	if [ ! -d obj ]; then mkdir obj; fi;
-	if [ ! -d lib ]; then mkdir slib; fi;
-	if [ ! -d lib ]; then mkdir dlib; fi;
+
+sdir:	
+	if [ ! -d slib ]; then mkdir slib; fi;
+
+ddir:	
+	if [ ! -d dlib ]; then mkdir dlib; fi;
 
 # Source files
 _LIB_OBJ=list.o
 _APP_OBJ=app.o
 _DEPS=list.h
-_OBJ=$(_LIB_OBJ) $(_APP_OBJ)
 
 # Append obj/
 APP_OBJ=$(patsubst %,$(ODIR)/%,$(_APP_OBJ))
-
 LIB_OBJ=$(patsubst %,$(ODIR)/%,$(_LIB_OBJ))
 
 # Append slib/
@@ -61,15 +63,15 @@ DLIB_OBJ=$(patsubst %,$(DLDIR)/%,$(_LIB_OBJ))
 DEPS=$(patsubst %,$(IDIR)/%,$(_DEPS))
 
 # compile: obj dir holds objects files with out fPIC
-$(ODIR)/%.o: $(SDIR)/%.c $(DEPS) tdir
+$(ODIR)/%.o: $(SDIR)/%.c $(DEPS) odir
 	$(CC) -c -g -o $@ $< $(FLAGS) $(CFLAGS)
 
 # compile: slib dir holds library objects files with out fpic
-$(SLDIR)/%.o: $(SDIR)/%.c $(DEPS) tdir
+$(SLDIR)/%.o: $(SDIR)/%.c $(DEPS) sdir
 	$(CC) -c -g -o $@ $< $(FLAGS) $(CFLAGS)
 
 # compile: dlib dir holds library objects files with fPIC
-$(DLDIR)/%.o: $(SDIR)/%.c $(DEPS) tdir
+$(DLDIR)/%.o: $(SDIR)/%.c $(DEPS) ddir
 	$(CC) -c -g -o $@ $< $(FLAGS) $(CFLAGS) $(LFLAGS)
 
 # build app with out lib
