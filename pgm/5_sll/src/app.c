@@ -6,7 +6,7 @@
 int main(void)
 {
 	unsigned int ch;
-	int loop_iter = 0;
+	long loop_iter = 0;
 
 	SLL_T *sll = init_sll(); 
 	
@@ -25,11 +25,11 @@ int main(void)
 		scanf("%u", &ch);
 		
 		switch(ch) {
-			case 1: insert_node_at_first(sll, loop_iter); break;
-			case 2: insert_node_at_last(sll, loop_iter); break;
+			case 1: insert_node_at_first(sll, (void *)loop_iter); break;
+			case 2: insert_node_at_last(sll, (void *)loop_iter); break;
 			case 3: printf("IDX: ");
 					scanf("%u", &ch);
-					insert_node_at_idx(sll, ch, loop_iter); 
+					insert_node_at_idx(sll, ch, (void *)loop_iter); 
 					break;
 			case 4: delete_first_node(sll); break;
 			case 5: delete_last_node(sll); break;

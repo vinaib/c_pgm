@@ -7,7 +7,7 @@
 /* SLL NODE */
 typedef struct node {
 	struct node* next;
-	int data;
+	void *data;
 }NODE_T;
 
 typedef struct _sll {
@@ -36,7 +36,7 @@ bool is_list_empty(SLL_T *sll);
  * Use this function to insert node after head. Update the head pointer to point
  * this node and increase n_ele by 1
  */
-bool insert_node_at_first(SLL_T *sll, int val);
+bool insert_node_at_first(SLL_T *sll, void *data);
 
 /*
  * Function: delete_first_node() O(1)
@@ -51,7 +51,7 @@ bool delete_first_node(SLL_T *sll);
  * Insert node at last and update the tail pointer and increment n_ele by 1.
  * Returns 
  */
-bool insert_node_at_last(SLL_T *sll, int val);
+bool insert_node_at_last(SLL_T *sll, void *data);
 
 /*
  * Function: delete_last_node() O(1)
@@ -68,7 +68,7 @@ bool delete_last_node(SLL_T *sll);
  *
  * Returns true on success else false on failure
  */
-bool insert_node_at_idx(SLL_T *sll, unsigned int idx, int val);
+bool insert_node_at_idx(SLL_T *sll, unsigned int idx, void *data);
 
 /*
  * Function: delete_node_at_idx O(n)
@@ -114,5 +114,5 @@ void reverse_list(SLL_T *sll);
 /*
  * Function: list_prefill() O(1)
  */
-void list_prefill(SLL_T *sll, int *start_val);
+void list_prefill(SLL_T *sll, void *start_val);
 #endif

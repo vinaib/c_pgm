@@ -29,7 +29,7 @@ NODE_T* alloc_node()
 	return (NODE_T*)calloc(ONE, sizeof(NODE_T));
 }
 
-bool insert_node_at_first(SLL_T *sll, int val)
+bool insert_node_at_first(SLL_T *sll, void *data)
 {
 	bool ret = false;
 	NODE_T *pnew;
@@ -45,7 +45,7 @@ bool insert_node_at_first(SLL_T *sll, int val)
 		goto func_exit;
 	}
 
-	pnew->data = val;
+	pnew->data = data;
 
 	/* is list empty */
 	if(is_list_empty(sll)) {
@@ -98,7 +98,7 @@ exit_func:
 	return ret;
 }
 
-bool insert_node_at_last(SLL_T *sll, int val)
+bool insert_node_at_last(SLL_T *sll, void *data)
 {
 	bool ret = false;
 	NODE_T *pnew;
@@ -114,7 +114,7 @@ bool insert_node_at_last(SLL_T *sll, int val)
 		goto exit_func;
 	}
 	
-	pnew->data = val;
+	pnew->data = data;
 
 	/* is list empty */
 	if(is_list_empty(sll)) {
@@ -177,7 +177,7 @@ exit_func:
 	return ret;
 }
 
-bool insert_node_at_idx(SLL_T *sll, unsigned int idx, int val)
+bool insert_node_at_idx(SLL_T *sll, unsigned int idx, void *data)
 {
 	bool ret = false;
 	NODE_T *pnew;
@@ -194,7 +194,7 @@ bool insert_node_at_idx(SLL_T *sll, unsigned int idx, int val)
 	}
 	else if( (idx == ONE) ||
 			 (is_list_empty(sll))) {
-		insert_node_at_first(sll, val);
+		insert_node_at_first(sll, data);
 		goto exit_true;
 	}
 
@@ -207,7 +207,7 @@ bool insert_node_at_idx(SLL_T *sll, unsigned int idx, int val)
 	}
 
 	if(idx != ONE) {
-		insert_node_at_last(sll,val);
+		insert_node_at_last(sll,data);
 		goto exit_true;
 	}
 
@@ -217,7 +217,7 @@ bool insert_node_at_idx(SLL_T *sll, unsigned int idx, int val)
 		goto exit_func;
 	}
 
-	pnew->data = val;
+	pnew->data = data;
 	
 	pnew->next = pcur;
 	pprev->next = pnew;
@@ -303,7 +303,7 @@ void print_sll(SLL_T *sll)
 
 	while(ptmp != NULL)
 	{
-		printf("%d ", ptmp->data);
+		printf("%p ", ptmp->data);
 		ptmp = ptmp->next;
 	}
 
@@ -337,15 +337,15 @@ exit_func:
 	return;
 }
 
-void list_prefill(SLL_T *sll, int *start_val)
+void list_prefill(SLL_T *sll, void *start_val)
 {
-	insert_node_at_first(sll, 1);
-	insert_node_at_first(sll, 2);
-	insert_node_at_first(sll, 3);
-	insert_node_at_last(sll, 4);
-	insert_node_at_last(sll, 5);
-	insert_node_at_last(sll, 6);
-	insert_node_at_idx(sll, 2, 22);
-	insert_node_at_idx(sll, 5, 55);
-	insert_node_at_idx(sll, 8, 88);
+	insert_node_at_first(sll, (void *)1);
+	insert_node_at_first(sll, (void *)2);
+	insert_node_at_first(sll, (void *)3);
+	insert_node_at_last(sll, (void *)4);
+	insert_node_at_last(sll, (void *)5);
+	insert_node_at_last(sll, (void *)6);
+	insert_node_at_idx(sll, 2, (void *)22);
+	insert_node_at_idx(sll, 5, (void *)55);
+	insert_node_at_idx(sll, 8, (void *)88);
 }
