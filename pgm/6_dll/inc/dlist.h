@@ -4,7 +4,7 @@
 typedef struct _dnode {
 	struct _dnode *left;
 	struct _dnode *right;
-	int val;
+	void *data;
 } DNODE_T;
 
 typedef struct __dll {
@@ -38,7 +38,7 @@ bool is_list_empty(DLL_T *dll);
  * Function: insert_node_at_first() O(1)
  * Use this function to insert node after head. 
  */
-bool insert_node_at_first(DLL_T *dll, int val);
+bool insert_node_at_first(DLL_T *dll, void *data);
 
 /*
  * Function: delete_first_node() O(1)
@@ -64,7 +64,7 @@ void traverse_backward_dll(DLL_T *dll);
  * Insert node at last and update the tail pointer and increment n_ele by 1.
  * Returns
  */
-bool insert_node_at_last(DLL_T *dll, int val);
+bool insert_node_at_last(DLL_T *dll, void *data);
 
 /*
  * Function: delete_last_node() O(1)
@@ -77,7 +77,7 @@ bool delete_last_node(DLL_T *dll);
 /*
  * Function: insert_node_at_idx()
  */
-bool insert_node_at_idx(DLL_T *dll, int idx, int val);
+bool insert_node_at_idx(DLL_T *dll, int idx, void *data);
 
 /*
  * Function: delete_node_at_idx()

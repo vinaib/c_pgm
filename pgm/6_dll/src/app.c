@@ -8,7 +8,7 @@ int main(void)
 	int ret = 0;
 	int ch;
 	DLL_T *dll;
-	int loop_iter = 0;
+	long loop_iter = 0;
 
 	dll = init_dll();
 	if(dll == NULL) {
@@ -19,28 +19,22 @@ int main(void)
 
     for(;;) {    
         ++loop_iter;    
-        printf("1 Insert node as first node\n");    
-        printf("2 delete first node\n");    
-        printf("3 Insert node as last node\n");                             
-        printf("4 delete last node\n");    
-        printf("5 Insert node at idx\n");              
-        printf("6 delete node at idx\n");    
-        printf("7 search data\n");    
-        printf("8 traverse forward\n");    
-        printf("9 traverse backward\n");    
-        printf("0 for exit\n");    
-        printf("Enter your choice: ");    
+		printf("1:INF\t\t2:INL\t\t3:INIDX\t\t");
+		printf("4:DNF\t\t5:DNL\t\t6:DNIDX\t\t");
+		printf("7:SRCH\t\t8:PRNF\t\t9:PRNB\t\t");
+		printf("10:PREFL\t\t0:EXT\n");
+		printf("CHOICE: ");
         scanf("%u", &ch);                     
        
         switch(ch) {               
-            case 1: insert_node_at_first(dll, loop_iter); break;
-            case 2: delete_first_node(dll); break;
-            case 3: insert_node_at_last(dll, loop_iter); break;
-            case 4: delete_last_node(dll); break;
-            case 5: printf("Enter idx: ");
+            case 1: insert_node_at_first(dll, (void *)loop_iter); break;
+            case 2: insert_node_at_last(dll, (void *)loop_iter); break;
+            case 3: printf("Enter idx: ");
                     scanf("%u", &ch);
-                    insert_node_at_idx(dll, ch, loop_iter);
+                    insert_node_at_idx(dll, ch, (void *)loop_iter);
                     break;
+            case 4: delete_first_node(dll); break;
+            case 5: delete_last_node(dll); break;
             case 6: printf("Enter idx: ");
                     scanf("%u", &ch);
                     delete_node_at_idx(dll, ch);

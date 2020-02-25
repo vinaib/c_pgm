@@ -25,7 +25,7 @@ bool is_list_empty(DLL_T *dll)
 			(dll->tail == NULL));
 }
 
-bool insert_node_at_first(DLL_T *dll, int val)
+bool insert_node_at_first(DLL_T *dll, void *data)
 {
 	bool ret = false;
 	DNODE_T *pnew;
@@ -37,7 +37,7 @@ bool insert_node_at_first(DLL_T *dll, int val)
 	if(pnew == NULL)
 		goto exit_func;
 
-	pnew->val = val;
+	pnew->data = data;
 
 	/* very first node */
 	if(dll->head == NULL) {
@@ -100,7 +100,7 @@ void traverse_forward_dll(DLL_T *dll)
 	ptemp = dll->head;
 
 	while(ptemp != NULL) {
-		printf("data %d\n", ptemp->val);
+		printf("data %p\n", ptemp->data);
 		ptemp=ptemp->right;
 	}
 
@@ -121,7 +121,7 @@ void traverse_backward_dll(DLL_T *dll)
 	ptemp = dll->tail;
 
 	while(ptemp != NULL) {
-		printf("data %d\n", ptemp->val);
+		printf("data %p\n", ptemp->data);
 		ptemp=ptemp->left;
 	}
 
@@ -129,7 +129,7 @@ exit_func:
 	return;
 }
 
-bool insert_node_at_last(DLL_T *dll, int val)
+bool insert_node_at_last(DLL_T *dll, void *data)
 {
 	bool ret = false;
 	DNODE_T *pnew;
@@ -141,7 +141,7 @@ bool insert_node_at_last(DLL_T *dll, int val)
 	if(pnew == NULL)
 		goto exit_func;
 	
-	pnew->val = val;
+	pnew->data = data;
 
 	/*no elements*/
 	if(dll->tail == NULL && dll->head == NULL) {
@@ -186,7 +186,7 @@ exit_func:
 	return ret;
 }
 
-bool insert_node_at_idx(DLL_T *dll, int idx, int val)
+bool insert_node_at_idx(DLL_T *dll, int idx, void *data)
 {
 	bool ret = false;
 	DNODE_T *pnew;
@@ -196,7 +196,7 @@ bool insert_node_at_idx(DLL_T *dll, int idx, int val)
 		goto exit_func;
 
 	if(idx == ZERO || idx == ONE || is_list_empty(dll)) {
-		insert_node_at_first(dll, val);
+		insert_node_at_first(dll, data);
 		goto exit_true;
 	}
 
@@ -205,7 +205,7 @@ bool insert_node_at_idx(DLL_T *dll, int idx, int val)
 	}
 
 	if(idx != ONE) {
-		insert_node_at_last(dll, val);
+		insert_node_at_last(dll, data);
 		goto exit_true;
 	}
 
@@ -213,7 +213,7 @@ bool insert_node_at_idx(DLL_T *dll, int idx, int val)
 	if((pnew = alloc_node()) == NULL)
 		goto exit_func;
 	
-	pnew->val = val;
+	pnew->data = data;
 
 	pnew->right = pcur;
 	pnew->left = pcur->left;
