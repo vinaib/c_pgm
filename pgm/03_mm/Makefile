@@ -1,4 +1,5 @@
 CC=gcc
+#CC=arm-linux-gnueabihf-gcc
 CFLAGS=-I.
 MM_OBJ=mm.o
 STK_OBJ=stk_smash.o
