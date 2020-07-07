@@ -53,6 +53,9 @@ breakpoints
 # continue		# continue to next break point
 # step/s
 
+#nexti / ni		#
+#stepi / si		# step in assembly instructions
+
 # delete breakpoints
 --------------------
 delete 1		# delete breakpoint 1
@@ -96,7 +99,7 @@ When you are in that frame, we can fetch all locals in that frame.
 (gdb) info/i variables/v	# list all global and static variables
 (gdb) info locals/l		# list local variable values of current stack frame
 (gdb) info args/a			# list argument values of current stack frame
-(gdb) info register/r		# list register values
+(gdb) info register/r		# list cpu register values
 
 
 # to print value of variable
@@ -197,6 +200,15 @@ $ gdb --tui
 # enable tui from (gdb) prompt
 (gdb) ctrl + xa
 
+asm: listing in tui mode
+------------------------
+# make upper window display assembly
+(gdb) layout asm
+(gdb) ctrl + s 	#single key mode, where run, continue, up, down, finish are
+abbreviated to single key
+(gdb) display/i $pc  #this tells the gdb to disassemble current instruction just
+before printing the prompt each time
+
 Logging
 --------
 By default gdb does not log, if you want to enable log what ever you perform on
@@ -217,8 +229,10 @@ $ sudo gdb
 										# halts execution
 (gdb) detach							# detach currently attached process
 
-View assebly of C code
----------------------
+View assembly of C code
+-----------------------
+disassemble 'file.c'::<function name>
+or
 (gdb) disassemble <funuction name>
 
 
@@ -242,4 +256,16 @@ End with a line saying just "end"
 >end
 (gdb) r				# whenever breakpoint executes it prints <var> value
 
-
+Remote Debugging
+----------------
+# copy gdbserver from toolchain directory to target /bin/
+# chmod +x /bin/gdbserver
+# run following command on target
+gdbserver 0.0.0.0:1234 --attach <pid>
+gdbserver 0.0.0.0:1234 --attach 140		;attach to running process
+gdbserver 0.0.0.0:1234 app_exe			;launch gdb session on process app_exe
+# on host run
+arm-linux-gnueabihf-gdb
+# from gdb prompt, run following command to connect to target
+target remote 192.168.1.30:1234
+#
