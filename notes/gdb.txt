@@ -209,6 +209,10 @@ abbreviated to single key
 (gdb) display/i $pc  #this tells the gdb to disassemble current instruction just
 before printing the prompt each time
 
+# list cpu registers
+--------------------
+(gdb)layout regs
+
 Logging
 --------
 By default gdb does not log, if you want to enable log what ever you perform on
@@ -265,7 +269,11 @@ gdbserver 0.0.0.0:1234 --attach <pid>
 gdbserver 0.0.0.0:1234 --attach 140		;attach to running process
 gdbserver 0.0.0.0:1234 app_exe			;launch gdb session on process app_exe
 # on host run
-arm-linux-gnueabihf-gdb
+arm-linux-gnueabihf-gdb <a.out>			;a.out is mandatory, otherwise not able
+to debug, it says "cannot find bounds of current function". May be it loads all
+libc and dependent libraries by itself when we give a.out as an argument. If
+argument is not specified, and load only binary through file from gdb prompt
+then it fails and says above error message. Need to try all these.
 # from gdb prompt, run following command to connect to target
 target remote 192.168.1.30:1234
 #
