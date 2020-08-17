@@ -1,5 +1,6 @@
 #include<stdio.h>
 
+/* Converts to boolean */
 #define BB(x) (!!x)
 int main(void)
 {

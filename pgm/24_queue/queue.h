@@ -30,10 +30,14 @@ typedef struct queue {
 	int32_t ifront;
 	int32_t irear;
 	int32_t *piq;
+	/* ds for linked list implementation */
 	NODE_t *xfront;
 	NODE_t *xrear;
 }xQueue_t;
 
+/************************************************************
+* Array Implemenetation: Linear Queue
+************************************************************/
 /* 
  * Function: eQerr_t init_queue(xQueue_t *xpq, int32_t isz);
  * input: pointer to q
@@ -99,6 +103,9 @@ void check_qerr(eQerr_t err);
  */
 void deinit_queue(xQueue_t *xpq);
 
+/************************************************************
+* Array Implementation: Circular queue
+************************************************************/
 /* 
  * Function: eQerr_t init_cqueue(xQueue_t *xpq, int32_t isz);
  * input: pointer to q
@@ -137,6 +144,9 @@ void deinit_queue(xQueue_t *xpq);
  */
 eQerr_t cdequeue(xQueue_t *xpq, int32_t *pidata);
 
+/************************************************************
+* Linked List Implemenetation: Linear queue
+************************************************************/
 /* 
  * Function: NODE_t* alloc_node(void)
  * input: 
