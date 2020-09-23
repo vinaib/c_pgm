@@ -1,5 +1,5 @@
 CC=arm-linux-gnueabihf-gcc
-#CC=gcc
+CC=gcc
 CFLAGS=-I.
 
 DEPS=app.o

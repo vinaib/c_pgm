@@ -8,6 +8,8 @@
 #define GPFSEL4 0x7E200010
 #define GPFSEL5 0x7E200014
 
+extern void asm_routine(void);
+
 void GPIO_dir_output(int32_t pin_no)
 {
 	int32_t sel_reg = (pin_no) / 10;
@@ -29,4 +31,7 @@ int32_t main(void)
 	for(i=0; i<53; i++)
 		GPIO_dir_output(i);
 	
+	asm_routine();
+
+	asm("pop {r0-r4}");
 }

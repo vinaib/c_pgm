@@ -3,19 +3,21 @@ CC=gcc
 AS=as
 CFLAGS=-I.
 
-GENERATE_ASM=app.s
-DEPS=app.o
+OBJS := app.o asm_routine.o
 
+#Generate asm file
 %.s:%.c
 	$(PREFIX)$(CC) -marm -S $< -o $@ $(CFLAGS)
 
+%.o:%.s
+	$(PREFIX)$(AS) -g $< -o $@
+
 %.o:%.c
-	$(CC) -g -c $< -o $@ $(CFLAGS)
+	$(PREFIX)$(CC) -g -c $< -o $@ $(CFLAGS)
 
-app.s:
-
-app_exe:$(DEPS)
-	$(CC) -g -o $@ $^ $(CFLAGS)
+app_exe:$(OBJS)
+	$(PREFIX)$(CC) -g -o $@ $^ $(CFLAGS)
+	cp $@ /var/lib/tftpboot
 
 clean:
-	rm -rf app_exe *.o *.s
+	rm -rf app_exe *.o
