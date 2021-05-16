@@ -2,6 +2,7 @@
 #define __QUEUE_H
 
 #include<stdint.h>
+#include<stdbool.h>
 
 #define queueSIZE 6
 #define queueNSIZE -1
@@ -33,6 +34,10 @@ typedef struct queue {
 	/* ds for linked list implementation */
 	NODE_t *xfront;
 	NODE_t *xrear;
+	/* second logic for front/rear, with out
+	 * wasting a slot
+	*/
+	bool full;
 }xQueue_t;
 
 /************************************************************
@@ -130,6 +135,8 @@ void deinit_queue(xQueue_t *xpq);
  * Description:
  */
  eQerr_t cenqueue(xQueue_t *xpq, int32_t idata);
+ eQerr_t cenqueue2(xQueue_t *xpq, int32_t idata);
+ eQerr_t cenqueue3(xQueue_t *xpq, int32_t idata);
 
 /* 
  * Function: 
@@ -143,6 +150,9 @@ void deinit_queue(xQueue_t *xpq);
  * Description:
  */
 eQerr_t cdequeue(xQueue_t *xpq, int32_t *pidata);
+eQerr_t cdequeue2(xQueue_t *xpq, int32_t *pidata);
+
+eQerr_t cqueue_reset(xQueue_t *xpq);
 
 /************************************************************
 * Linked List Implemenetation: Linear queue

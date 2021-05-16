@@ -1,6 +1,7 @@
 #include<queue.h>
 #include<stdint.h>
 #include<stdio.h>
+#include<assert.h>
 
 /* globals */
 xQueue_t xq;
@@ -10,6 +11,8 @@ static void demo_linear_queue()
 	int32_t idata;
 	int32_t iret;
 	eQerr_t err;
+
+	assert(1);
 
 	/* Lesson learnt: 
 	 * if sz input parameter is uint32_t then passing -1
@@ -29,7 +32,7 @@ static void demo_linear_queue()
 	if(err < 0)
 		check_qerr(err);
 
-	for(uint32_t i = 1; i<=queueSIZE; i++) {
+	for(uint32_t i = 1; i<=queueSIZE+1; i++) {
 		err = enqueue(&xq, i);
 		if(err < 0)
 			check_qerr(err);
@@ -37,7 +40,7 @@ static void demo_linear_queue()
 			printf("%d inserted at pos %d(rear) %d(front)\n", i, xq.irear, xq.ifront);
 	}
 
-	for(uint32_t i = 1; i<=queueSIZE; i++) {
+	for(uint32_t i = 1; i<=queueSIZE+1; i++) {
 		err = dequeue(&xq, &idata);
 		if(err < 0)
 			check_qerr(err);
@@ -73,7 +76,7 @@ static void demo_circular_queue()
 	if(err < 0)
 		check_qerr(err);
 	
-	for(uint32_t i = 1; i<queueSIZE; i++) {
+	for(uint32_t i = 1; i<queueSIZE+2; i++) {
 		err = cenqueue(&xq, i);
 		if(err < 0)
 			check_qerr(err);
@@ -81,25 +84,13 @@ static void demo_circular_queue()
 			printf("%d inserted at pos %d(rear) %d(front)\n", i, xq.irear, xq.ifront);
 	}
 
-	for(uint32_t i = 1; i<queueSIZE; i++) {
+	for(uint32_t i = 1; i<queueSIZE+2; i++) {
 		err = cdequeue(&xq, &idata);
 		if(err < 0)
 			check_qerr(err);
 		else
 			printf("%d deleted from pos %d(front) %d(rear)\n", idata, xq.ifront, xq.irear);
 	}
-
-	err = cenqueue(&xq, (queueSIZE+1));
-	if(err < 0)
-		check_qerr(err);
-	else
-		printf("%d inserted at pos %d(rear) %d(front)\n", (queueSIZE+1), xq.irear, xq.ifront);
-
-	err = cdequeue(&xq, &idata);
-	if(err < 0)
-		check_qerr(err);
-	else
-		printf("%d deleted from pos %d(front) %d(rear)\n", idata, xq.ifront, xq.irear);
 
 	deinit_queue(&xq);
 
@@ -132,11 +123,49 @@ void demo_linkedlist_queue(void)
 	deinit_queue(&xq);
 }
 
+
+static void demo_circular_queue2(void)
+{
+	int32_t idata;
+	int32_t iret;
+	eQerr_t err;
+
+	/* Circular queue demo */
+	err = init_cqueue(&xq, queueSIZE);
+	if(err < 0)
+		check_qerr(err);
+	
+	for(uint32_t i = 1; i<queueSIZE*2; i++) 
+	{
+		err = cenqueue2(&xq, i);
+		if(err < 0)
+			check_qerr(err);
+	}
+
+	for(uint32_t i = 1; i<queueSIZE+4; i++) 
+	{
+		err = cdequeue2(&xq, &idata);
+		if(err < 0)
+			check_qerr(err);
+	}
+
+	deinit_queue(&xq);
+
+	return;
+
+}
+
 int main(void)
 {
+	printf("Demo linear queue\r\n");
 	demo_linear_queue();
 
+	printf("Demo circular queue\r\n");
 	demo_circular_queue();
 
+	printf("Demo linked list queue\r\n");
 	demo_linkedlist_queue();
+
+	printf("Demo circular queue2\r\n");
+	demo_circular_queue2();
 }

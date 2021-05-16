@@ -1,6 +1,13 @@
 #include<stdio.h>
 
-int test(void)
+int test(unsigned int a)
 {
- printf("test func\n");
+	switch(a)
+	{
+	case 1: printf("1\n"); break;
+	default: printf("default\n");
+	case 2: printf("2\n"); break;
+	}
+
+	 printf("test func\n");
 }
