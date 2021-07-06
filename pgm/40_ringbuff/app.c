@@ -48,6 +48,9 @@ get_and_increment_write_idx_t 	get_and_increment_write_idx = get_and_increment_c
 #error "Define any one RB mechanism"
 #endif
 
+/* 
+ * Function: usb_rx_func
+ */
 void *usb_rx_func(void *ptr)
 {
  int32_t idx;
@@ -66,7 +69,7 @@ void *usb_rx_func(void *ptr)
 
   idx = get_and_increment_write_idx(&spk_q);
   
-  if(idx == ERBFULL)
+  if(ERBFULL == idx)
   {
     printf("SPKQ FULL\n");
     continue;    
@@ -76,46 +79,138 @@ void *usb_rx_func(void *ptr)
 
   for(iter = 0; iter < 288; iter++)
   {
-   spk_buff[iter] = 1;
+   spk_buff[idx + iter] = 1;
   }
 
-  if(++pr_usb_rx > 5000)
+  if(5000 < ++pr_usb_rx)
   {
-   printf("USBRX RUNNING\r\n");
+   printf("USBRX RUNNING %d %d %d %d\r\n",
+    get_elements(&spk_q),
+    get_free_elements(&spk_q),
+    spk_q.iread,
+    spk_q.iwrite);
+
    pr_usb_rx = 0;
   } 
- }
+ } // while(!exit_th)
+
  return NULL;
 }
 
+/* 
+ * Function: usb_tx_func
+ */
 void *usb_tx_func(void *ptr)
 {
+ int32_t idx;
+
+ int32_t iter;
+
+ static int32_t pr_usb_tx = 0;
+
  #ifdef DEBUG
  printf("%s\n", (char*)ptr);
  #endif
 
  while(!exit_th)
  {
-  ;
+   usleep(985);
+
+   if(THRESHOLD > get_elements(&mic_q))
+   {
+    continue;
+   }
+
+   idx = get_read_idx(&mic_q);
+ 
+   if(ERBEMPTY == idx)
+   {
+    printf("MICQ EMPTY\r\n");
+    continue;
+   }
+
+   for(iter = 0; iter<288; iter++)
+   {
+    mic_buff[idx + iter] = 0;
+   }  
+  
+   idx = increment_read_idx(&mic_q);
+   
+   if(ERBEMPTY == idx)
+   {
+    printf("MICQ EMPTY 2\r\n");
+    continue;
+   }
+   
+   if(5000 < ++pr_usb_tx)
+   {
+     pr_usb_tx = 0;
+     printf("USBTX RUNNING %d %d %d %d\r\n",
+      get_elements(&mic_q),
+      get_free_elements(&mic_q),
+      mic_q.iread,
+      mic_q.iwrite);
+   }
  }
 
  return NULL;
 }
 
+/* 
+ * Function: cdc_rx_func
+ */
 void *cdc_rx_func(void *ptr)
 {
+ int32_t idx;
+
+ int32_t iter;
+
+ static int32_t pr_cdc_rx = 0;
+
  #ifdef DEBUG
  printf("%s\n", (char*)ptr);
  #endif
 
  while(!exit_th)
  {
-  ;
+
+  usleep(990);
+
+  idx = get_and_increment_write_idx(&mic_q);
+
+  if(ERBFULL == idx)
+  {
+   printf("MICQ FULL %d %d\r\n", 
+	get_elements(&mic_q), 
+        get_free_elements(&mic_q));
+
+   continue;
+  }
+  
+  idx = idx * ELEMENT_SZ;
+
+  for(iter = 0; iter < 288; iter++)
+  {
+   mic_buff[idx + iter] =  1;
+  }
+
+  if(5000 < ++pr_cdc_rx)
+  {
+   pr_cdc_rx = 0;
+   printf("CDCRX RUNNING %d %d %d %d\r\n",
+    get_elements(&mic_q),
+    get_free_elements(&mic_q),
+    mic_q.iread,
+    mic_q.iwrite);
+  }
  }
 
  return NULL;
 }
 
+/* 
+ * Function: cdc_tx_func
+ */
 void *cdc_tx_func(void *ptr)
 {
  int32_t idx;
@@ -135,12 +230,11 @@ void *cdc_tx_func(void *ptr)
 
   if(THRESHOLD > get_elements(&spk_q))
   {
-    usleep(5000);
     continue;
   }
 
   idx = get_read_idx(&spk_q);
-  if(idx == ERBEMPTY)
+  if(ERBEMPTY == idx)
   {
    printf("SPKQ EMPTY\r\n");
    continue;
@@ -150,27 +244,33 @@ void *cdc_tx_func(void *ptr)
 
   for(iter = 0;iter < 288; iter++)
   {
-   spk_buff[iter] = 0;
+   spk_buff[idx + iter] = 0;
   }   
 
   idx = increment_read_idx(&spk_q);
-  if(idx == ERBEMPTY)
+  if(ERBEMPTY == idx)
   {
    printf("SPKQ EMPTY 2\r\n");
    continue;
   }
   
-  if(++pr_cdc_tx > 5000)
+  if(5000 < ++pr_cdc_tx)
   {
-   printf("CDCTX RUNNING\r\n");
+   printf("CDCTX RUNNING %d %d %d %d\r\n",
+    get_elements(&spk_q),
+    get_free_elements(&spk_q),
+    spk_q.iread,
+    spk_q.iwrite);
    pr_cdc_tx = 0;
   } 
-
  }
 
  return NULL;
 }
 
+/* 
+ * Function: main
+ */
 int main(int argc, char *argv[])
 {
  printf("Ringbuff Implementation\n");
@@ -196,17 +296,18 @@ int main(int argc, char *argv[])
 	usb_rx_func,
 	(void *)msg1);
 
+ cdc_rx_id = pthread_create(
+	&cdc_rx,
+	NULL,
+	cdc_rx_func,
+	(void *)msg3);
+
  usb_tx_id = pthread_create(
 	&usb_tx,
 	NULL,
 	usb_tx_func,
 	(void *)msg2);
 
- cdc_rx_id = pthread_create(
-	&cdc_rx,
-	NULL,
-	cdc_rx_func,
-	(void *)msg3);
  cdc_tx_id = pthread_create(
 	&cdc_tx,
 	NULL,

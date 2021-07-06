@@ -58,7 +58,7 @@ int32_t get_and_increment_c_write_idx(rb_t *rb)
 #endif
 }
 
-int32_t get_c_elements(rb_t *rb)
+uint32_t get_c_elements(rb_t *rb)
 {
  int32_t ele = rb->isize;
 
@@ -77,14 +77,14 @@ int32_t get_c_elements(rb_t *rb)
   }
   else
   {
-   ele = (rb->iread + rb->isize) - rb->iwrite;
+   ele = (rb->iwrite + rb->isize) - rb->iread;
   }
  }
  
- return ele;
+ return (uint32_t)ele;
 }
 
-int32_t get_c_free_elements(rb_t *rb)
+uint32_t get_c_free_elements(rb_t *rb)
 {
 #ifdef DEBUG
  printf("%s\r\n", __FUNCTION__);

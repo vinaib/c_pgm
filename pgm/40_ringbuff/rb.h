@@ -16,10 +16,10 @@
 #undef CONTINUOUS_RB
 
 typedef struct rb {
- int32_t iread;
- int32_t iwrite;
- int32_t isize;
- int32_t full;
+ uint32_t iread;
+ uint32_t iwrite;
+ uint32_t isize;
+ uint32_t full;
 }rb_t;
 
 typedef enum rb_error {
@@ -36,8 +36,8 @@ typedef int32_t (*get_read_idx_t) (rb_t *rb);
 typedef int32_t (*increment_write_idx_t) (rb_t *rb);
 typedef int32_t (*increment_read_idx_t) (rb_t *rb);
 typedef int32_t (*get_and_increment_write_idx_t) (rb_t *rb);
-typedef int32_t (*get_elements_t) (rb_t *rb);
-typedef int32_t (*get_free_elements_t) (rb_t *rb);
+typedef uint32_t (*get_elements_t) (rb_t *rb);
+typedef uint32_t (*get_free_elements_t) (rb_t *rb);
 typedef int32_t (*is_rb_full_t) (rb_t *rb);
 typedef int32_t (*is_rb_empty_t) (rb_t *rb);
 typedef int32_t (*get_rb_size_t) (rb_t *rb);

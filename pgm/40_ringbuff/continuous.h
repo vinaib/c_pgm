@@ -16,9 +16,9 @@ int32_t increment_c_read_idx(rb_t *rb);
 
 int32_t get_and_increment_c_write_idx(rb_t *rb);
 
-int32_t get_c_elements(rb_t *rb);
+uint32_t get_c_elements(rb_t *rb);
 
-int32_t get_c_free_elements(rb_t *rb);
+uint32_t get_c_free_elements(rb_t *rb);
 
 int32_t is_c_rb_full(rb_t *rb);
 
