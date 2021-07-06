@@ -135,6 +135,14 @@ static void demo_circular_queue2(void)
 	if(err < 0)
 		check_qerr(err);
 	
+	for(uint32_t i = 1; i<queueSIZE+4; i++) 
+	{
+		err = cdequeue2(&xq, &idata);
+		if(err < 0)
+			check_qerr(err);
+		if(i==4) err = cenqueue2(&xq, i);
+	}
+
 	for(uint32_t i = 1; i<queueSIZE*2; i++) 
 	{
 		err = cenqueue2(&xq, i);
@@ -157,6 +165,7 @@ static void demo_circular_queue2(void)
 
 int main(void)
 {
+#if 0
 	printf("Demo linear queue\r\n");
 	demo_linear_queue();
 
@@ -165,7 +174,7 @@ int main(void)
 
 	printf("Demo linked list queue\r\n");
 	demo_linkedlist_queue();
-
+#endif
 	printf("Demo circular queue2\r\n");
 	demo_circular_queue2();
 }
