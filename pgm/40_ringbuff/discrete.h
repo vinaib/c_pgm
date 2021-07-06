@@ -4,7 +4,7 @@
 #include<stdint.h>
 #include "rb.h"
 
-void init_d_rb(rb_t *rb, int32_t sz);
+void init_d_rb(rb_t *rb, int32_t rbsz, int32_t elesz);
 
 int32_t get_d_write_idx(rb_t *rb);
 

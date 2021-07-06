@@ -5,20 +5,23 @@
 
 #define ELEMENT_SZ 880
 
-#define RB_SIZE ((ELEMENTS) * (ELEMENT_SZ))
+#define RB_SIZE (8800)
 
 #define THRESHOLD 5
 
 #undef DEBUG
 
-#define DISCRETE_RB
+#undef DISCRETE_RB
 
-#undef CONTINUOUS_RB
+#define CONTINUOUS_RB
+
+#define DEBUG_THREAD
 
 typedef struct rb {
  uint32_t iread;
  uint32_t iwrite;
- uint32_t isize;
+ uint32_t irbsize;
+ uint32_t ielesize;
  uint32_t full;
 }rb_t;
 
@@ -30,7 +33,7 @@ typedef enum rb_error {
  ERBUNDERFLOW	= ERBEMPTY,
 }rb_error_t;
 
-typedef void (*init_rb_t) (rb_t *rb, int32_t sz);
+typedef void (*init_rb_t) (rb_t *rb, int32_t rbsz, int32_t elesz);
 typedef int32_t (*get_write_idx_t) (rb_t *rb);
 typedef int32_t (*get_read_idx_t) (rb_t *rb);
 typedef int32_t (*increment_write_idx_t) (rb_t *rb);

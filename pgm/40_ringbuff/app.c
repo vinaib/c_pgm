@@ -14,9 +14,9 @@ rb_t mic_q;
 
 int32_t exit_th = 0;
 
-uint8_t spk_buff[8800];
+uint8_t spk_buff[RB_SIZE];
 
-uint8_t mic_buff[8800];
+uint8_t mic_buff[RB_SIZE];
 
 #if defined(DISCRETE_RB) && !defined(CONTINUOUS_RB)
 init_rb_t 			init_rb 	= init_d_rb; 
@@ -75,13 +75,40 @@ void *usb_rx_func(void *ptr)
     continue;    
   } 
 
+#if defined(DISCRETE_RB) && !defined(CONTINUOUS_RB)
   idx = idx * ELEMENT_SZ;
 
   for(iter = 0; iter < 288; iter++)
   {
    spk_buff[idx + iter] = 1;
   }
+#elif defined(CONTINUOUS_RB) && !defined(DISCRETE_RB)
+  if(spk_q.irbsize < (idx + spk_q.ielesize))
+  {
+   uint32_t first_part_size = spk_q.irbsize - idx;
+   uint32_t second_part_size = spk_q.ielesize - first_part_size;
 
+   for(iter = 0; iter<first_part_size; iter++)
+   {
+    spk_buff[idx + iter] = 1;
+   }
+
+   idx = 0;
+   for(iter = 0; iter<second_part_size; iter++)
+   {
+    spk_buff[idx+iter] = 1;
+   }
+  }
+  else
+  {
+   for(iter = 0; iter < spk_q.ielesize; iter++)
+   { 
+    spk_buff[idx + iter] = 1;
+   }
+  }
+#endif
+
+#ifdef DEBUG_THREAD
   if(5000 < ++pr_usb_rx)
   {
    printf("USBRX RUNNING %d %d %d %d\r\n",
@@ -92,6 +119,17 @@ void *usb_rx_func(void *ptr)
 
    pr_usb_rx = 0;
   } 
+#endif
+#ifdef FIRST_90
+  if(90 > ++pr_usb_rx)
+  printf("USBRX %d %d %d %d %d\n", 
+   spk_q.iwrite,
+   spk_q.iread,
+   spk_q.full,
+   get_elements(&spk_q),
+   get_free_elements(&spk_q));
+#endif
+
  } // while(!exit_th)
 
  return NULL;
@@ -128,12 +166,41 @@ void *usb_tx_func(void *ptr)
     printf("MICQ EMPTY\r\n");
     continue;
    }
+   
+#if defined(DISCRETE_RB) && !defined(CONTINUOUS_RB)
+   idx = idx * ELEMENT_SZ
 
    for(iter = 0; iter<288; iter++)
    {
     mic_buff[idx + iter] = 0;
    }  
-  
+#elif defined(CONTINUOUS_RB) && !defined(DISCRETE_RB)
+   if(mic_q.irbsize < (idx + mic_q.ielesize))
+   {
+     uint32_t first_part_sz = mic_q.irbsize - idx;
+     uint32_t second_part_sz = mic_q.ielesize - first_part_sz;
+     
+     for(iter = 0; iter<first_part_sz; iter++)
+     {
+      mic_buff[idx + iter] = 0;
+     }  
+
+     // point idx to first
+     idx = 0;
+     for(iter = 0; iter<second_part_sz; iter++)
+     {
+      mic_buff[idx + iter] = 0;
+     }
+   }
+   else
+   {
+    for(iter = 0; iter<mic_q.ielesize; iter++)
+    {
+     mic_buff[idx + iter] = 0;
+    }  
+   }
+#endif
+
    idx = increment_read_idx(&mic_q);
    
    if(ERBEMPTY == idx)
@@ -142,6 +209,7 @@ void *usb_tx_func(void *ptr)
     continue;
    }
    
+#ifdef DEBUG_THREAD
    if(5000 < ++pr_usb_tx)
    {
      pr_usb_tx = 0;
@@ -151,7 +219,8 @@ void *usb_tx_func(void *ptr)
       mic_q.iread,
       mic_q.iwrite);
    }
- }
+#endif
+ } //while(!exit_th)
 
  return NULL;
 }
@@ -187,13 +256,40 @@ void *cdc_rx_func(void *ptr)
    continue;
   }
   
+#if defined(DISCRETE_RB) && !defined(CONTINUOUS_RB)
   idx = idx * ELEMENT_SZ;
 
   for(iter = 0; iter < 288; iter++)
   {
    mic_buff[idx + iter] =  1;
   }
+#elif defined(CONTINUOUS_RB) && !defined(DISCRETE_RB)
+  if(mic_q.irbsize < (idx + mic_q.ielesize))
+  {
+   uint32_t first_part_size = mic_q.irbsize - idx;
+   uint32_t second_part_size = mic_q.ielesize - first_part_size;
+ 
+   for(iter = 0; iter<first_part_size;iter++)
+   {
+    mic_buff[idx + iter] = 1;
+   }
 
+   idx = 0;
+   for(iter = 0; iter<second_part_size; iter++)
+   {
+    mic_buff[idx + iter] = 1;
+   }
+  }
+  else
+  {
+   for(iter = 0; iter < mic_q.ielesize; iter++)
+   {
+    mic_buff[idx + iter] =  1;
+   }
+  }
+#endif
+
+#ifdef DEBUG_THREAD
   if(5000 < ++pr_cdc_rx)
   {
    pr_cdc_rx = 0;
@@ -203,7 +299,8 @@ void *cdc_rx_func(void *ptr)
     mic_q.iread,
     mic_q.iwrite);
   }
- }
+#endif
+ } //while(!exit_th)
 
  return NULL;
 }
@@ -228,7 +325,7 @@ void *cdc_tx_func(void *ptr)
 
   usleep(990);
 
-  if(THRESHOLD > get_elements(&spk_q))
+  if((THRESHOLD * spk_q.ielesize) > get_elements(&spk_q))
   {
     continue;
   }
@@ -240,12 +337,37 @@ void *cdc_tx_func(void *ptr)
    continue;
   }
   
+#if defined(DISCRETE_RB) && !defined(CONTINUOUS_RB)
   idx = idx * ELEMENT_SZ;
-
   for(iter = 0;iter < 288; iter++)
   {
    spk_buff[idx + iter] = 0;
   }   
+#elif defined(CONTINUOUS_RB) && !defined(DISCRETE_RB)
+  if(spk_q.irbsize < (idx + spk_q.ielesize))
+  {
+   uint32_t first_part_size = spk_q.irbsize - idx;
+   uint32_t second_part_size = spk_q.ielesize - first_part_size;
+
+   for(iter=0; iter<first_part_size; iter++)
+   {
+    spk_buff[idx + iter] = 0;
+   }
+
+   idx = 0;
+   for(iter=0; iter<second_part_size; iter++)
+   {
+    spk_buff[idx + iter] = 0;
+   }
+  }
+  else
+  {
+   for(iter = 0;iter < spk_q.ielesize; iter++)
+   {
+    spk_buff[idx + iter] = 0;
+   }   
+  }
+#endif
 
   idx = increment_read_idx(&spk_q);
   if(ERBEMPTY == idx)
@@ -253,7 +375,7 @@ void *cdc_tx_func(void *ptr)
    printf("SPKQ EMPTY 2\r\n");
    continue;
   }
-  
+#ifdef DEBUG_THREAD
   if(5000 < ++pr_cdc_tx)
   {
    printf("CDCTX RUNNING %d %d %d %d\r\n",
@@ -263,7 +385,17 @@ void *cdc_tx_func(void *ptr)
     spk_q.iwrite);
    pr_cdc_tx = 0;
   } 
- }
+#endif
+#ifdef FIRST_90
+  if(90 > ++pr_cdc_tx)
+  printf("CDCTX %d %d %d %d %d\n", 
+   spk_q.iwrite,
+   spk_q.iread,
+   spk_q.full,
+   get_elements(&spk_q),
+   get_free_elements(&spk_q));
+#endif
+ } //while(!exit_th)
 
  return NULL;
 }
@@ -286,16 +418,21 @@ int main(int argc, char *argv[])
  int32_t cdc_rx_id;
  int32_t cdc_tx_id;
 
- init_rb(&spk_q, ELEMENTS);
+#if defined (DISCRETE_RB) && !defined(CONTINUOUS_RB)
+ init_rb(&spk_q, ELEMENTS, 0);
 
- init_rb(&mic_q, ELEMENTS);
+ init_rb(&mic_q, ELEMENTS, 0);
+#elif defined(CONTINUOUS_RB) && !defined(DISCRETE_RB)
+ init_rb(&spk_q, RB_SIZE, 192);
+
+ init_rb(&mic_q, RB_SIZE, 192);
+#endif
 
  usb_rx_id = pthread_create(
 	&usb_rx,
 	NULL,
 	usb_rx_func,
 	(void *)msg1);
-
  cdc_rx_id = pthread_create(
 	&cdc_rx,
 	NULL,
@@ -322,7 +459,6 @@ int main(int argc, char *argv[])
  pthread_join(usb_tx, NULL);
  pthread_join(cdc_rx, NULL);
  pthread_join(cdc_tx, NULL);
-
 
  printf("USB RX THREAD Exits(%d)\n", usb_rx_id);
  printf("USB TX THREAD Exits(%d)\n", usb_tx_id);

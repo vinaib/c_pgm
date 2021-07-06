@@ -1,6 +1,7 @@
 CC=gcc
 CFLAGS=-I.
 FLAGS=-lpthread
+DEBUG=-g
 
 DEPS=app.o continuous.o discrete.o
 
@@ -21,10 +22,10 @@ DEPS=app.o continuous.o discrete.o
 # gcc -o app_exe app.o second.o -I.
 
 %.o:%.c
-	$(CC) -c $< -o $@ $(CFLAGS) $(FLAGS)
+	$(CC) -c $< -o $@ $(CFLAGS) $(FLAGS) $(DEBUG)
 
 app_exe:$(DEPS)
-	$(CC) -o $@ $^ $(CFLAGS) -lm $(FLAGS)
+	$(CC) -o $@ $^ $(CFLAGS) -lm $(FLAGS) $(DEBUG)
 
 clean:
 	rm -rf app_exe *.o

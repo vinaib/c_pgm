@@ -1,13 +1,14 @@
 #include "discrete.h"
 #include<stdio.h>
 
-void init_d_rb(rb_t *rb, int32_t sz)
+void init_d_rb(rb_t *rb, int32_t rbsz, int32_t elesz)
 {
 #ifdef DEBUG
  printf("%s\r\n", __FUNCTION__);
 #endif
  rb->iread = rb->iwrite = 0;
- rb->isize = sz;
+ rb->irbsize = rbsz;
+ rb->ielesize = elesz;
  rb->full = 0;
 }
 
@@ -48,7 +49,7 @@ int32_t increment_d_write_idx(rb_t *rb)
   return ERBFULL;
  }
 
- rb->iwrite = (rb->iwrite + 1)%rb->isize;
+ rb->iwrite = (rb->iwrite + 1)%rb->irbsize;
 
  rb->full = (rb->iwrite == rb->iread);
 
@@ -68,7 +69,7 @@ int32_t increment_d_read_idx(rb_t *rb)
 
  rb->full = 0;
 
- rb->iread = (rb->iread + 1) % rb->isize;
+ rb->iread = (rb->iread + 1) % rb->irbsize;
 
  return ERBSUCCESS;
 }
@@ -88,7 +89,7 @@ int32_t get_and_increment_d_write_idx(rb_t *rb)
  
  idx = rb->iwrite;
 
- rb->iwrite = (rb->iwrite + 1)%rb->isize;
+ rb->iwrite = (rb->iwrite + 1)%rb->irbsize;
 
  rb->full = (rb->iwrite == rb->iread);
 
@@ -97,7 +98,7 @@ int32_t get_and_increment_d_write_idx(rb_t *rb)
 
 uint32_t get_d_elements(rb_t *rb)
 {
- int32_t ele = rb->isize;
+ int32_t ele = rb->irbsize;
 
 #ifdef DEBUG
  printf("%s\r\n", __FUNCTION__);
@@ -114,7 +115,7 @@ uint32_t get_d_elements(rb_t *rb)
   }
   else
   {
-   ele = (rb->iwrite + rb->isize) - rb->iread;
+   ele = (rb->iwrite + rb->irbsize) - rb->iread;
   }
  }
  
@@ -126,7 +127,7 @@ uint32_t get_d_free_elements(rb_t *rb)
 #ifdef DEBUG
  printf("%s\r\n", __FUNCTION__);
 #endif
- return rb->isize - get_d_elements(rb);
+ return rb->irbsize - get_d_elements(rb);
 }
 
 int32_t is_d_rb_full(rb_t *rb)
@@ -151,5 +152,5 @@ int32_t get_d_rb_size(rb_t *rb)
 #ifdef DEBUG
  printf("%s\r\n", __FUNCTION__);
 #endif
- return rb->isize;
+ return rb->irbsize;
 }
