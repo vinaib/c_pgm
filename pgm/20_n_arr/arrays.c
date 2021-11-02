@@ -55,5 +55,35 @@ int main()
    free(pd[1]);
    free(pd[2]);
    free(pd);
+
+   printf("size of int                             %ld\n", sizeof(int));
+   // first row base address / first location a[0][0]
+   printf("first row base addr a                         %p \n", a);
+   printf("first row base addr *(a)/*a                   %p \n", *(a));
+   printf("data at first row base addr *(*(a))           %d \n", *(*(a)));
+   // first row base address / second location a[0][1]
+   printf("first row base addr second *(a)+1             %p \n", *(a)+1);
+   printf("data at first row base addr second *(*(a)+1)  %d \n", *(*(a)+1));
+   // first row base address / third location a[0][2]
+   printf("first row base addr third *(a)+2              %p \n", *(a)+2);
+   printf("data at first row base addr third *(*(a)+2)   %d \n", *(*(a)+2));
+   // first row base address / fourth location a[0][3]
+   printf("first row base addr fourth *(a)+3             %p \n", *(a)+3);
+   printf("data at first row base addr fourth *(*(a)+3)  %d \n", *(*(a)+3));
+   // second row base address /first location
+   printf("second row base addr a+1                      %p \n", a+1);
+   printf("second row base addr *(a+1)                   %p \n", *(a+1));
+   printf("data at second row base addr *(*(a+1))        %d \n", *(*(a+1)));
+   // second row base address /second location
+   // printf("second row base addr (a+1)+1               %p \n", (a+1)+1);
+   // (a+1)+1 is equal to (a+2) this points to third row, not the second
+   // element in second row. To access the second element in second row
+   // correct statement is *(a+1)+1
+   printf("second row base addr *(a+1)                   %p \n", *(a+1)+1);
+   printf("data at second row base addr second *(*(a+1)) %d \n", *(*(a+1)+1));
+   // third row base address
+   printf("third row base addr a+2                       %p \n", a+2);
+   printf("third row base addr *(a+2)                    %p \n", *(a+2));
+   printf("data at third row base addr *(*(a+2))         %d \n", *(*(a+2)));
    
 }

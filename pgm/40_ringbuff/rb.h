@@ -15,7 +15,12 @@
 
 #define CONTINUOUS_RB
 
-#define DEBUG_THREAD
+#undef DEBUG_THREAD
+
+#define DIR_RX
+#undef DIR_TX
+
+#define FIRST_90
 
 typedef struct rb {
  uint32_t iread;
@@ -38,6 +43,8 @@ typedef int32_t (*get_write_idx_t) (rb_t *rb);
 typedef int32_t (*get_read_idx_t) (rb_t *rb);
 typedef int32_t (*increment_write_idx_t) (rb_t *rb);
 typedef int32_t (*increment_read_idx_t) (rb_t *rb);
+typedef int32_t (*increment_read_idx_with_len_t) (rb_t *rb, int32_t len);
+typedef int32_t (*increment_write_idx_with_len_t) (rb_t *rb, int32_t len);
 typedef int32_t (*get_and_increment_write_idx_t) (rb_t *rb);
 typedef uint32_t (*get_elements_t) (rb_t *rb);
 typedef uint32_t (*get_free_elements_t) (rb_t *rb);

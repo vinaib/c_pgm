@@ -12,7 +12,11 @@ int32_t get_d_read_idx(rb_t *rb);
 
 int32_t increment_d_write_idx(rb_t *rb);
 
+int32_t increment_d_write_idx_with_len(rb_t *rb, int32_t len);
+
 int32_t increment_d_read_idx(rb_t *rb);
+
+int32_t increment_d_read_idx_with_len(rb_t *rb, int32_t len);
 
 int32_t get_and_increment_d_write_idx(rb_t *rb);
 

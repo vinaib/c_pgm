@@ -29,7 +29,9 @@ get_elements_t 			get_elements	= get_d_elements;
 get_free_elements_t 		get_free_elements 	= get_d_free_elements;
 increment_read_idx_t 		increment_read_idx 	= increment_d_read_idx;
 increment_write_idx_t 		increment_write_idx 	= increment_d_write_idx;
-get_and_increment_write_idx_t 	get_and_increment_write_idx 	= get_and_increment_d_write_idx;
+increment_read_idx_with_len_t	increment_read_idx_with_len  = increment_d_read_idx_with_len;
+increment_write_idx_with_len_t	increment_write_idx_with_len = increment_d_write_idx_with_len;
+get_and_increment_write_idx_t 	get_and_increment_write_idx  = get_and_increment_d_write_idx;
 
 #elif !defined(DISCRETE_RB) && defined(CONTINUOUS_RB)
 init_rb_t 			init_rb 	= init_c_rb; 
@@ -42,7 +44,9 @@ get_elements_t 			get_elements 	= get_c_elements;
 get_free_elements_t 		get_free_elements 	= get_c_free_elements;
 increment_read_idx_t 		increment_read_idx 	= increment_c_read_idx;
 increment_write_idx_t 		increment_write_idx 	= increment_c_write_idx;
-get_and_increment_write_idx_t 	get_and_increment_write_idx = get_and_increment_c_write_idx;
+increment_read_idx_with_len_t	increment_read_idx_with_len  = increment_c_read_idx_with_len;
+increment_write_idx_with_len_t	increment_write_idx_with_len = increment_c_write_idx_with_len;
+get_and_increment_write_idx_t 	get_and_increment_write_idx  = get_and_increment_c_write_idx;
 
 #elif !defined(DISCRETE_RB) && !defined(CONTINUOUS_RB)
 #error "Define any one RB mechanism"
@@ -121,13 +125,9 @@ void *usb_rx_func(void *ptr)
   } 
 #endif
 #ifdef FIRST_90
-  if(90 > ++pr_usb_rx)
-  printf("USBRX %d %d %d %d %d\n", 
-   spk_q.iwrite,
-   spk_q.iread,
-   spk_q.full,
-   get_elements(&spk_q),
-   get_free_elements(&spk_q));
+  if(500 > ++pr_usb_rx)
+  printf("USBRX %d\n", 
+   idx);
 #endif
 
  } // while(!exit_th)
@@ -369,12 +369,6 @@ void *cdc_tx_func(void *ptr)
   }
 #endif
 
-  idx = increment_read_idx(&spk_q);
-  if(ERBEMPTY == idx)
-  {
-   printf("SPKQ EMPTY 2\r\n");
-   continue;
-  }
 #ifdef DEBUG_THREAD
   if(5000 < ++pr_cdc_tx)
   {
@@ -387,14 +381,17 @@ void *cdc_tx_func(void *ptr)
   } 
 #endif
 #ifdef FIRST_90
-  if(90 > ++pr_cdc_tx)
-  printf("CDCTX %d %d %d %d %d\n", 
-   spk_q.iwrite,
-   spk_q.iread,
-   spk_q.full,
-   get_elements(&spk_q),
-   get_free_elements(&spk_q));
+  if(500 > ++pr_cdc_tx)
+  printf("CDCTX %d\n", 
+   idx);
 #endif
+
+  idx = increment_read_idx(&spk_q);
+  if(ERBEMPTY == idx)
+  {
+   printf("SPKQ EMPTY 2\r\n");
+   continue;
+  }
  } //while(!exit_th)
 
  return NULL;
@@ -407,32 +404,59 @@ int main(int argc, char *argv[])
 {
  printf("Ringbuff Implementation\n");
 
- pthread_t usb_rx, usb_tx, cdc_rx, cdc_tx;
+#if defined(DIR_RX) && !defined(DIR_TX)
+ pthread_t usb_rx, cdc_tx;
  char *msg1 = "USB RX THREAD";
+ char *msg4 = "CDC TX THREAD";
+ int32_t usb_rx_id;
+ int32_t cdc_tx_id;
+#endif
+ 
+#if defined(DIR_TX) && !defined(DIR_RX)
+ pthread_t usb_tx, cdc_rx;
  char *msg2 = "USB TX THREAD";
  char *msg3 = "CDC RX THREAD";
- char *msg4 = "CDC TX THREAD";
-
- int32_t usb_rx_id;
  int32_t usb_tx_id;
  int32_t cdc_rx_id;
- int32_t cdc_tx_id;
+#endif
 
 #if defined (DISCRETE_RB) && !defined(CONTINUOUS_RB)
- init_rb(&spk_q, ELEMENTS, 0);
 
- init_rb(&mic_q, ELEMENTS, 0);
+#if defined(DIR_RX) && !defined(DIR_TX)
+ init_rb(&spk_q, ELEMENTS, 1);
+#endif
+
+#if defined(DIR_TX) && !defined(DIR_RX)
+ init_rb(&mic_q, ELEMENTS, 1);
+#endif
+
 #elif defined(CONTINUOUS_RB) && !defined(DISCRETE_RB)
- init_rb(&spk_q, RB_SIZE, 192);
 
+#if defined(DIR_RX) && !defined(DIR_TX)
+ init_rb(&spk_q, RB_SIZE, 192);
+#endif
+
+#if defined(DIR_TX) && !defined(DIR_RX)
  init_rb(&mic_q, RB_SIZE, 192);
 #endif
 
+#endif
+
+#if defined(DIR_RX) && !defined(DIR_TX)
  usb_rx_id = pthread_create(
 	&usb_rx,
 	NULL,
 	usb_rx_func,
 	(void *)msg1);
+
+ cdc_tx_id = pthread_create(
+	&cdc_tx,
+	NULL,
+	cdc_tx_func,
+	(void *)msg4);
+#endif
+
+#if defined(DIR_TX) && !defined(DIR_RX)
  cdc_rx_id = pthread_create(
 	&cdc_rx,
 	NULL,
@@ -444,25 +468,29 @@ int main(int argc, char *argv[])
 	NULL,
 	usb_tx_func,
 	(void *)msg2);
-
- cdc_tx_id = pthread_create(
-	&cdc_tx,
-	NULL,
-	cdc_tx_func,
-	(void *)msg4);
+#endif
 
  getchar();
 
  exit_th = 1;
 
+#if defined(DIR_RX) && !defined(DIR_TX)
  pthread_join(usb_rx, NULL);
- pthread_join(usb_tx, NULL);
- pthread_join(cdc_rx, NULL);
  pthread_join(cdc_tx, NULL);
+#endif
 
+#if defined(DIR_TX) && !defined(DIR_RX)
+ pthread_join(cdc_rx, NULL);
+ pthread_join(usb_tx, NULL);
+#endif
+
+#if defined(DIR_RX) && !defined(DIR_TX)
  printf("USB RX THREAD Exits(%d)\n", usb_rx_id);
- printf("USB TX THREAD Exits(%d)\n", usb_tx_id);
- printf("CDC RX THREAD Exits(%d)\n", cdc_rx_id);
  printf("CDC TX THREAD Exits(%d)\n", cdc_tx_id);
+#endif
+#if defined(DIR_TX) && !defined(DIR_RX)
+ printf("CDC RX THREAD Exits(%d)\n", cdc_rx_id);
+ printf("USB TX THREAD Exits(%d)\n", usb_tx_id);
+#endif
  return 0;
 }

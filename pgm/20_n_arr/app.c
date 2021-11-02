@@ -23,7 +23,7 @@ int main(void)
 	//uint8_t (*dptr)[4] = (uint8_t (*)[4])arr_1d; 
 	uint8_t (*(*dptr));
 
-	dptr = (uint8_t (*)[3][4])arr_1d;
+	dptr = (uint8_t**)arr_1d;
 
 	printf("size of arr_1d %ld\n", sizeof(arr_1d));
 	printf("size of arr_2d %ld\n", sizeof(arr_2d));

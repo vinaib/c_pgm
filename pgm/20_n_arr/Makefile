@@ -1,13 +1,23 @@
 CC=gcc
 CFLAGS=-I.
+CPP=g++
 
-DEPS=app.o
+DEPS=app.o 
+CPP_DEPS=cpp_app.o
+
+default:c_app cpp_app
 
 %.o:%.c
 	$(CC) -c $< -o $@ $(CFLAGS) -g
 
-app_exe:$(DEPS)
+%.o:%.cpp
+	$(CPP) -c $< -o $@ $(CFLAGS) -g
+
+c_app:$(DEPS)
 	$(CC) -o $@ $^ $(CFLAGS)
 
+cpp_app:$(CPP_DEPS)
+	$(CPP) -o $@ $^ $(CFLAGS) -g
+
 clean:
-	rm -rf app_exe *.o
+	rm -rf c_app cpp_app a.out app_exe *.o

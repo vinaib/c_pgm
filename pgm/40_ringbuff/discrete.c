@@ -56,6 +56,24 @@ int32_t increment_d_write_idx(rb_t *rb)
  return ERBSUCCESS;
 }
 
+int32_t increment_d_write_idx_with_len(rb_t *rb, int32_t len)
+{
+#ifdef DEBUG
+ printf("%s\r\n", __FUNCTION__);
+#endif
+
+ if(rb->full)
+ {
+  return ERBFULL;
+ }
+
+ rb->iwrite = (rb->iwrite + len)%rb->irbsize;
+
+ rb->full = (rb->iwrite == rb->iread);
+
+ return ERBSUCCESS;
+}
+
 int32_t increment_d_read_idx(rb_t *rb)
 {
 #ifdef DEBUG
@@ -70,6 +88,24 @@ int32_t increment_d_read_idx(rb_t *rb)
  rb->full = 0;
 
  rb->iread = (rb->iread + 1) % rb->irbsize;
+
+ return ERBSUCCESS;
+}
+
+int32_t increment_d_read_idx_with_len(rb_t *rb, int32_t len)
+{
+#ifdef DEBUG
+ printf("%s\r\n", __FUNCTION__);
+#endif
+
+ if(is_d_rb_empty(rb))
+ {
+  return ERBEMPTY;
+ }
+
+ rb->full = 0;
+
+ rb->iread = (rb->iread + len) % rb->irbsize;
 
  return ERBSUCCESS;
 }
