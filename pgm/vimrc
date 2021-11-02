@@ -1,13 +1,13 @@
 filetype on
-set number
-set tabstop=4
 set shiftwidth=4
 set textwidth=80
 
 " to undo auto indent: set noautoindent
-set autoindent
-set smartindent
-set cindent
+" copies the current indentation to next line
+" set autoindent
+
+"set smartindent
+"set cindent
 
 "Hitting arrow keys adds characters is fixed by set nocompatible
 set nocompatible
@@ -22,5 +22,28 @@ colorscheme desert
 " to remove line numbers
 "set nonumber
 
+" Display numbers (lines)
+set number
+
 " set tags
 " set tags=<tag_file_path>
+
+set wrapmargin=2
+
+" reference: https://vim.fandom.com/wiki/Converting_tabs_to_spaces
+" To insert space characters whenever the tab key is pressed, 
+" set the 'expandtab' option.
+" With this option set, if you want to enter a real tab character use
+" Ctrl-V<Tab> key sequence.
+set expandtab
+
+" Insert 3 spaces for a tab
+set tabstop=3
+
+" 'expandtab' option is set, all the new tab characters entered will be 
+" changed to spaces. This will not affect the existing tab characters. 
+" To change all the existing tab characters to match the current tab 
+" settings, use:
+retab
+
+
