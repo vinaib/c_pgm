@@ -1,5 +1,8 @@
 #include<stdio.h>
 
+/* reference linux sources: 
+ * arch/arm/include/asm/bitops.h
+ */
 void set_bit(unsigned int bit, volatile unsigned long *p)
 {
    // bit not exceed 31, in 32 bit machine
