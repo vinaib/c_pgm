@@ -1,0 +1,617 @@
+Archive member included to satisfy reference by file (symbol)
+
+/home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-exit.o)
+                              /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/crt0.o (exit)
+/home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-impure.o)
+                              /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-exit.o) (_global_impure_ptr)
+/home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-init.o)
+                              /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/crt0.o (__libc_init_array)
+/home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-memset.o)
+                              /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/crt0.o (memset)
+/home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-__call_atexit.o)
+                              /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-exit.o) (__call_exitprocs)
+/home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-atexit.o)
+                              /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-__call_atexit.o) (atexit)
+/home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-fini.o)
+                              /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-__call_atexit.o) (__libc_fini_array)
+/home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-lock.o)
+                              /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-__call_atexit.o) (__retarget_lock_acquire_recursive)
+/home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-__atexit.o)
+                              /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-atexit.o) (__register_exitproc)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/crti.o
+LOAD /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/crtbegin.o
+LOAD /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/crt0.o
+LOAD app.o
+LOAD syscalls.o
+START GROUP
+LOAD /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/libgcc.a
+LOAD /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a
+END GROUP
+LOAD /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/crtend.o
+LOAD /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/crtn.o
+                [!provide]                        PROVIDE (__executable_start = SEGMENT_START ("text-segment", 0x8000))
+                0x0000000000008000                . = SEGMENT_START ("text-segment", 0x8000)
+
+.interp
+ *(.interp)
+
+.note.gnu.build-id
+ *(.note.gnu.build-id)
+
+.hash
+ *(.hash)
+
+.gnu.hash
+ *(.gnu.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.dyn        0x0000000000008000        0x0
+ *(.rel.init)
+ *(.rel.text .rel.text.* .rel.gnu.linkonce.t.*)
+ *(.rel.fini)
+ *(.rel.rodata .rel.rodata.* .rel.gnu.linkonce.r.*)
+ *(.rel.data.rel.ro .rel.data.rel.ro.* .rel.gnu.linkonce.d.rel.ro.*)
+ *(.rel.data .rel.data.* .rel.gnu.linkonce.d.*)
+ *(.rel.tdata .rel.tdata.* .rel.gnu.linkonce.td.*)
+ *(.rel.tbss .rel.tbss.* .rel.gnu.linkonce.tb.*)
+ *(.rel.ctors)
+ *(.rel.dtors)
+ *(.rel.got)
+ *(.rel.bss .rel.bss.* .rel.gnu.linkonce.b.*)
+                [!provide]                        PROVIDE (__rel_iplt_start = .)
+ *(.rel.iplt)
+ .rel.iplt      0x0000000000008000        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/crtbegin.o
+                [!provide]                        PROVIDE (__rel_iplt_end = .)
+
+.rela.dyn       0x0000000000008000        0x0
+ *(.rela.init)
+ *(.rela.text .rela.text.* .rela.gnu.linkonce.t.*)
+ *(.rela.fini)
+ *(.rela.rodata .rela.rodata.* .rela.gnu.linkonce.r.*)
+ *(.rela.data .rela.data.* .rela.gnu.linkonce.d.*)
+ *(.rela.tdata .rela.tdata.* .rela.gnu.linkonce.td.*)
+ *(.rela.tbss .rela.tbss.* .rela.gnu.linkonce.tb.*)
+ *(.rela.ctors)
+ *(.rela.dtors)
+ *(.rela.got)
+ *(.rela.bss .rela.bss.* .rela.gnu.linkonce.b.*)
+                [!provide]                        PROVIDE (__rela_iplt_start = .)
+ *(.rela.iplt)
+                [!provide]                        PROVIDE (__rela_iplt_end = .)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.init           0x0000000000008000       0x18
+ *(SORT_NONE(.init))
+ .init          0x0000000000008000        0xc /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/crti.o
+                0x0000000000008000                _init
+ .init          0x000000000000800c        0xc /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/crtn.o
+
+.plt
+ *(.plt)
+
+.iplt           0x0000000000008018        0x0
+ *(.iplt)
+ .iplt          0x0000000000008018        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/crtbegin.o
+
+.text           0x0000000000008018      0x66c
+ *(.text.unlikely .text.*_unlikely .text.unlikely.*)
+ *(.text.exit .text.exit.*)
+ .text.exit     0x0000000000008018       0x34 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-exit.o)
+                0x0000000000008018                exit
+ *(.text.startup .text.startup.*)
+ .text.startup.register_fini
+                0x000000000000804c       0x28 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-__call_atexit.o)
+ *(.text.hot .text.hot.*)
+ *(SORT_BY_NAME(.text.sorted.*))
+ *(.text .stub .text.* .gnu.linkonce.t.*)
+ .text          0x0000000000008074        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/crti.o
+ .text          0x0000000000008074       0x70 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/crtbegin.o
+ .text          0x00000000000080e4      0x138 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/crt0.o
+                0x00000000000080e4                _stack_init
+                0x000000000000816c                _mainCRTStartup
+                0x000000000000816c                _start
+ .text          0x000000000000821c       0x1c app.o
+                0x000000000000821c                main
+ .text          0x0000000000008238       0x20 syscalls.o
+                0x0000000000008238                _exit
+ .text          0x0000000000008258        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-exit.o)
+ .text          0x0000000000008258        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-impure.o)
+ .text          0x0000000000008258        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-init.o)
+ .text.__libc_init_array
+                0x0000000000008258       0x88 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-init.o)
+                0x0000000000008258                __libc_init_array
+ .text          0x00000000000082e0        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-memset.o)
+ .text.memset   0x00000000000082e0      0x11c /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-memset.o)
+                0x00000000000082e0                memset
+ .text          0x00000000000083fc        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-__call_atexit.o)
+ .text.__call_exitprocs
+                0x00000000000083fc      0x138 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-__call_atexit.o)
+                0x00000000000083fc                __call_exitprocs
+ .text          0x0000000000008534        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-atexit.o)
+ .text.atexit   0x0000000000008534       0x20 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-atexit.o)
+                0x0000000000008534                atexit
+ .text          0x0000000000008554        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-fini.o)
+ .text.__libc_fini_array
+                0x0000000000008554       0x44 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-fini.o)
+                0x0000000000008554                __libc_fini_array
+ .text          0x0000000000008598        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-lock.o)
+ .text.__retarget_lock_init
+                0x0000000000008598        0x4 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-lock.o)
+                0x0000000000008598                __retarget_lock_init
+ .text.__retarget_lock_init_recursive
+                0x000000000000859c        0x4 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-lock.o)
+                0x000000000000859c                __retarget_lock_init_recursive
+ .text.__retarget_lock_close
+                0x00000000000085a0        0x4 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-lock.o)
+                0x00000000000085a0                __retarget_lock_close
+ .text.__retarget_lock_close_recursive
+                0x00000000000085a4        0x4 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-lock.o)
+                0x00000000000085a4                __retarget_lock_close_recursive
+ .text.__retarget_lock_acquire
+                0x00000000000085a8        0x4 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-lock.o)
+                0x00000000000085a8                __retarget_lock_acquire
+ .text.__retarget_lock_acquire_recursive
+                0x00000000000085ac        0x4 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-lock.o)
+                0x00000000000085ac                __retarget_lock_acquire_recursive
+ .text.__retarget_lock_try_acquire
+                0x00000000000085b0        0x8 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-lock.o)
+                0x00000000000085b0                __retarget_lock_try_acquire
+ .text.__retarget_lock_try_acquire_recursive
+                0x00000000000085b8        0x8 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-lock.o)
+                0x00000000000085b8                __retarget_lock_try_acquire_recursive
+ .text.__retarget_lock_release
+                0x00000000000085c0        0x4 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-lock.o)
+                0x00000000000085c0                __retarget_lock_release
+ .text.__retarget_lock_release_recursive
+                0x00000000000085c4        0x4 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-lock.o)
+                0x00000000000085c4                __retarget_lock_release_recursive
+ .text          0x00000000000085c8        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-__atexit.o)
+ .text.__register_exitproc
+                0x00000000000085c8       0xbc /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-__atexit.o)
+                0x00000000000085c8                __register_exitproc
+ .text          0x0000000000008684        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/crtend.o
+ .text          0x0000000000008684        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/crtn.o
+ *(.gnu.warning)
+ *(.glue_7t)
+ .glue_7t       0x0000000000008684        0x0 linker stubs
+ *(.glue_7)
+ .glue_7        0x0000000000008684        0x0 linker stubs
+ *(.vfp11_veneer)
+ .vfp11_veneer  0x0000000000008684        0x0 linker stubs
+ *(.v4_bx)
+ .v4_bx         0x0000000000008684        0x0 linker stubs
+
+.fini           0x0000000000008684       0x18
+ *(SORT_NONE(.fini))
+ .fini          0x0000000000008684        0xc /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/crti.o
+                0x0000000000008684                _fini
+ .fini          0x0000000000008690        0xc /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/crtn.o
+                [!provide]                        PROVIDE (__etext = .)
+                [!provide]                        PROVIDE (_etext = .)
+                [!provide]                        PROVIDE (etext = .)
+
+.rodata         0x000000000000869c       0x4c
+ *(.rodata .rodata.* .gnu.linkonce.r.*)
+ .rodata        0x000000000000869c       0x24 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/crtbegin.o
+ .rodata._global_impure_ptr
+                0x00000000000086c0        0x4 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-impure.o)
+                0x00000000000086c0                _global_impure_ptr
+ .rodata        0x00000000000086c4       0x24 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/crtend.o
+
+.rodata1
+ *(.rodata1)
+
+.ARM.extab      0x00000000000086e8        0x0
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+ .ARM.extab     0x00000000000086e8        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/crt0.o
+
+.ARM.exidx      0x00000000000086e8        0x8
+                [!provide]                        PROVIDE (__exidx_start = .)
+ *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+ .ARM.exidx     0x00000000000086e8        0x8 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/crt0.o
+                                         0x10 (size before relaxing)
+                [!provide]                        PROVIDE (__exidx_end = .)
+
+.eh_frame_hdr
+ *(.eh_frame_hdr)
+ *(.eh_frame_entry .eh_frame_entry.*)
+
+.eh_frame       0x00000000000086f0        0x4
+ *(.eh_frame)
+ .eh_frame      0x00000000000086f0        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/crtbegin.o
+ .eh_frame      0x00000000000086f0        0x4 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/crtend.o
+ *(.eh_frame.*)
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+
+.gnu_extab
+ *(.gnu_extab*)
+
+.exception_ranges
+ *(.exception_ranges*)
+                0x00000000000186f4                . = (ALIGN (CONSTANT (MAXPAGESIZE)) + (. & (CONSTANT (MAXPAGESIZE) - 0x1)))
+
+.eh_frame
+ *(.eh_frame)
+ *(.eh_frame.*)
+
+.gnu_extab
+ *(.gnu_extab)
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+
+.exception_ranges
+ *(.exception_ranges*)
+
+.tdata          0x00000000000186f4        0x0
+                [!provide]                        PROVIDE (__tdata_start = .)
+ *(.tdata .tdata.* .gnu.linkonce.td.*)
+
+.tbss
+ *(.tbss .tbss.* .gnu.linkonce.tb.*)
+ *(.tcommon)
+
+.preinit_array  0x00000000000186f4        0x0
+                0x00000000000186f4                PROVIDE (__preinit_array_start = .)
+ *(.preinit_array)
+                0x00000000000186f4                PROVIDE (__preinit_array_end = .)
+
+.init_array     0x00000000000186f4        0x8
+                0x00000000000186f4                PROVIDE (__init_array_start = .)
+ *(SORT_BY_INIT_PRIORITY(.init_array.*) SORT_BY_INIT_PRIORITY(.ctors.*))
+ .init_array.00000
+                0x00000000000186f4        0x4 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-__call_atexit.o)
+ *(.init_array EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .ctors)
+ .init_array    0x00000000000186f8        0x4 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/crtbegin.o
+                0x00000000000186fc                PROVIDE (__init_array_end = .)
+
+.fini_array     0x00000000000186fc        0x4
+                0x00000000000186fc                PROVIDE (__fini_array_start = .)
+ *(SORT_BY_INIT_PRIORITY(.fini_array.*) SORT_BY_INIT_PRIORITY(.dtors.*))
+ *(.fini_array EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .dtors)
+ .fini_array    0x00000000000186fc        0x4 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/crtbegin.o
+                0x0000000000018700                PROVIDE (__fini_array_end = .)
+
+.ctors
+ *crtbegin.o(.ctors)
+ *crtbegin?.o(.ctors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .ctors)
+ *(SORT_BY_NAME(.ctors.*))
+ *(.ctors)
+
+.dtors
+ *crtbegin.o(.dtors)
+ *crtbegin?.o(.dtors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .dtors)
+ *(SORT_BY_NAME(.dtors.*))
+ *(.dtors)
+
+.jcr
+ *(.jcr)
+
+.data.rel.ro
+ *(.data.rel.ro.local* .gnu.linkonce.d.rel.ro.local.*)
+ *(.data.rel.ro .data.rel.ro.* .gnu.linkonce.d.rel.ro.*)
+
+.dynamic
+ *(.dynamic)
+
+.got            0x0000000000018700        0x0
+ *(.got.plt)
+ *(.igot.plt)
+ .igot.plt      0x0000000000018700        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/crtbegin.o
+ *(.got)
+ *(.igot)
+
+.data           0x0000000000018700      0x434
+                0x0000000000018700                __data_start = .
+ *(.data .data.* .gnu.linkonce.d.*)
+ .data          0x0000000000018700        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/crti.o
+ .data          0x0000000000018700        0x4 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/crtbegin.o
+                0x0000000000018700                __dso_handle
+ .data          0x0000000000018704        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/crt0.o
+ .data          0x0000000000018704        0x0 app.o
+ .data          0x0000000000018704        0x0 syscalls.o
+ .data          0x0000000000018704        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-exit.o)
+ .data          0x0000000000018704        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-impure.o)
+ .data._impure_ptr
+                0x0000000000018704        0x4 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-impure.o)
+                0x0000000000018704                _impure_ptr
+ .data.impure_data
+                0x0000000000018708      0x428 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-impure.o)
+ .data          0x0000000000018b30        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-init.o)
+ .data          0x0000000000018b30        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-memset.o)
+ .data          0x0000000000018b30        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-__call_atexit.o)
+ .data.__atexit_recursive_mutex
+                0x0000000000018b30        0x4 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-__call_atexit.o)
+                0x0000000000018b30                __atexit_recursive_mutex
+ .data          0x0000000000018b34        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-atexit.o)
+ .data          0x0000000000018b34        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-fini.o)
+ .data          0x0000000000018b34        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-lock.o)
+ .data          0x0000000000018b34        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-__atexit.o)
+ .data          0x0000000000018b34        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/crtend.o
+ .data          0x0000000000018b34        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/crtn.o
+
+.data1
+ *(.data1)
+                0x0000000000018b34                _edata = .
+                [!provide]                        PROVIDE (edata = .)
+
+.persistent     0x0000000000018b34        0x0
+                0x0000000000018b34                . = ALIGN (0x4)
+                [!provide]                        PROVIDE (__persistent_start = .)
+ *(.persistent .persistent.* .gnu.linkonce.p.*)
+                0x0000000000018b34                . = ALIGN (0x4)
+                [!provide]                        PROVIDE (__persistent_end = .)
+                0x0000000000018b34                . = .
+                0x0000000000018b34                __bss_start = .
+                0x0000000000018b34                __bss_start__ = .
+
+.bss            0x0000000000018b34       0x40
+ *(.dynbss)
+ *(.bss .bss.* .gnu.linkonce.b.*)
+ .bss           0x0000000000018b34        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/crti.o
+ .bss           0x0000000000018b34       0x1c /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/crtbegin.o
+ .bss           0x0000000000018b50        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/crt0.o
+ .bss           0x0000000000018b50        0x0 app.o
+ .bss           0x0000000000018b50        0x0 syscalls.o
+ .bss           0x0000000000018b50        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-exit.o)
+ .bss           0x0000000000018b50        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-impure.o)
+ .bss           0x0000000000018b50        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-init.o)
+ .bss           0x0000000000018b50        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-memset.o)
+ .bss           0x0000000000018b50        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-__call_atexit.o)
+ .bss           0x0000000000018b50        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-atexit.o)
+ .bss           0x0000000000018b50        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-fini.o)
+ .bss           0x0000000000018b50        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-lock.o)
+ .bss.__lock___arc4random_mutex
+                0x0000000000018b50        0x1 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-lock.o)
+                0x0000000000018b50                __lock___arc4random_mutex
+ *fill*         0x0000000000018b51        0x3 
+ .bss.__lock___at_quick_exit_mutex
+                0x0000000000018b54        0x1 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-lock.o)
+                0x0000000000018b54                __lock___at_quick_exit_mutex
+ *fill*         0x0000000000018b55        0x3 
+ .bss.__lock___atexit_recursive_mutex
+                0x0000000000018b58        0x1 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-lock.o)
+                0x0000000000018b58                __lock___atexit_recursive_mutex
+ *fill*         0x0000000000018b59        0x3 
+ .bss.__lock___dd_hash_mutex
+                0x0000000000018b5c        0x1 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-lock.o)
+                0x0000000000018b5c                __lock___dd_hash_mutex
+ *fill*         0x0000000000018b5d        0x3 
+ .bss.__lock___env_recursive_mutex
+                0x0000000000018b60        0x1 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-lock.o)
+                0x0000000000018b60                __lock___env_recursive_mutex
+ *fill*         0x0000000000018b61        0x3 
+ .bss.__lock___malloc_recursive_mutex
+                0x0000000000018b64        0x1 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-lock.o)
+                0x0000000000018b64                __lock___malloc_recursive_mutex
+ *fill*         0x0000000000018b65        0x3 
+ .bss.__lock___sfp_recursive_mutex
+                0x0000000000018b68        0x1 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-lock.o)
+                0x0000000000018b68                __lock___sfp_recursive_mutex
+ *fill*         0x0000000000018b69        0x3 
+ .bss.__lock___sinit_recursive_mutex
+                0x0000000000018b6c        0x1 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-lock.o)
+                0x0000000000018b6c                __lock___sinit_recursive_mutex
+ *fill*         0x0000000000018b6d        0x3 
+ .bss.__lock___tz_mutex
+                0x0000000000018b70        0x1 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-lock.o)
+                0x0000000000018b70                __lock___tz_mutex
+ .bss           0x0000000000018b71        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-__atexit.o)
+ .bss           0x0000000000018b71        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/crtend.o
+ .bss           0x0000000000018b71        0x0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/crtn.o
+ *(COMMON)
+                0x0000000000018b74                . = ALIGN ((. != 0x0)?0x4:0x1)
+ *fill*         0x0000000000018b71        0x3 
+                0x0000000000018b74                _bss_end__ = .
+                0x0000000000018b74                __bss_end__ = .
+
+.noinit         0x0000000000018b74        0x0
+                0x0000000000018b74                . = ALIGN (0x4)
+                [!provide]                        PROVIDE (__noinit_start = .)
+ *(.noinit .noinit.* .gnu.linkonce.n.*)
+                0x0000000000018b74                . = ALIGN (0x4)
+                [!provide]                        PROVIDE (__noinit_end = .)
+                0x0000000000018b74                . = ALIGN (0x4)
+                0x0000000000018b74                . = SEGMENT_START ("ldata-segment", .)
+                0x0000000000018b74                . = ALIGN (0x4)
+                0x0000000000018b74                __end__ = .
+                0x0000000000018b74                _end = .
+                [!provide]                        PROVIDE (end = .)
+
+.stack          0x0000000000080000        0x0
+                0x0000000000080000                _stack = .
+ *(.stack)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x0000000000000000       0x49
+ *(.comment)
+ .comment       0x0000000000000000       0x49 app.o
+                                         0x4a (size before relaxing)
+ .comment       0x0000000000000049       0x4a syscalls.o
+
+.gnu.build.attributes
+ *(.gnu.build.attributes .gnu.build.attributes.*)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges
+ *(.debug_aranges)
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info
+ *(.debug_info .gnu.linkonce.wi.*)
+
+.debug_abbrev
+ *(.debug_abbrev)
+
+.debug_line
+ *(.debug_line .debug_line.* .debug_line_end)
+
+.debug_frame    0x0000000000000000      0x258
+ *(.debug_frame)
+ .debug_frame   0x0000000000000000       0x28 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-exit.o)
+ .debug_frame   0x0000000000000028       0x34 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-init.o)
+ .debug_frame   0x000000000000005c       0x48 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-memset.o)
+ .debug_frame   0x00000000000000a4       0x68 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-__call_atexit.o)
+ .debug_frame   0x000000000000010c       0x2c /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-atexit.o)
+ .debug_frame   0x0000000000000138       0x34 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-fini.o)
+ .debug_frame   0x000000000000016c       0xb0 /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-lock.o)
+ .debug_frame   0x000000000000021c       0x3c /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-__atexit.o)
+
+.debug_str
+ *(.debug_str)
+
+.debug_loc
+ *(.debug_loc)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.debug_pubtypes
+ *(.debug_pubtypes)
+
+.debug_ranges
+ *(.debug_ranges)
+
+.debug_addr
+ *(.debug_addr)
+
+.debug_line_str
+ *(.debug_line_str)
+
+.debug_loclists
+ *(.debug_loclists)
+
+.debug_macro
+ *(.debug_macro)
+
+.debug_names
+ *(.debug_names)
+
+.debug_rnglists
+ *(.debug_rnglists)
+
+.debug_str_offsets
+ *(.debug_str_offsets)
+
+.debug_sup
+ *(.debug_sup)
+
+.ARM.attributes
+                0x0000000000000000       0x26
+ *(.ARM.attributes)
+ .ARM.attributes
+                0x0000000000000000       0x1c /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/crti.o
+ .ARM.attributes
+                0x000000000000001c       0x2a /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/crtbegin.o
+ .ARM.attributes
+                0x0000000000000046       0x1a /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/crt0.o
+ .ARM.attributes
+                0x0000000000000060       0x2a app.o
+ .ARM.attributes
+                0x000000000000008a       0x2a syscalls.o
+ .ARM.attributes
+                0x00000000000000b4       0x2a /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-exit.o)
+ .ARM.attributes
+                0x00000000000000de       0x2a /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-impure.o)
+ .ARM.attributes
+                0x0000000000000108       0x2a /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-init.o)
+ .ARM.attributes
+                0x0000000000000132       0x2a /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-memset.o)
+ .ARM.attributes
+                0x000000000000015c       0x2a /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-__call_atexit.o)
+ .ARM.attributes
+                0x0000000000000186       0x2a /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-atexit.o)
+ .ARM.attributes
+                0x00000000000001b0       0x2a /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-fini.o)
+ .ARM.attributes
+                0x00000000000001da       0x2a /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-lock.o)
+ .ARM.attributes
+                0x0000000000000204       0x2a /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/libc.a(lib_a-__atexit.o)
+ .ARM.attributes
+                0x000000000000022e       0x2a /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/crtend.o
+ .ARM.attributes
+                0x0000000000000258       0x1c /home/vinai/projects/toolchain/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/crtn.o
+ *(.gnu.attributes)
+
+.note.gnu.arm.ident
+ *(.note.gnu.arm.ident)
+
+/DISCARD/
+ *(.note.GNU-stack)
+ *(.gnu_debuglink)
+ *(.gnu.lto_*)
+OUTPUT(appExe elf32-littlearm)
+LOAD linker stubs

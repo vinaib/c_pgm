@@ -1,5 +1,7 @@
 #include<stdio.h>
 #include<stdint.h>
+#include<string.h>
+#include<stdlib.h>
 
 #define ROW_3 		2
 #define COLUMN_3 	2
@@ -7,7 +9,89 @@
 
 #define ROW_2		3
 #define COLUMN_2 	4
-int main(void)
+
+void swap(int *ele1, int *ele2)
+{
+   *ele1 += *ele2;
+   *ele2 = *ele1-*ele2;
+   *ele1 = *ele1-*ele2;
+}
+
+// demonstrating of returning arrays
+// returning local arrays is disaster, As its scope is lost once the function
+// returns. So what is the solution for this?
+// either create array dynamically or create static global array.
+int *reverseArrRetLocal(int *arr, int sz)
+{
+   int i,j;
+
+   //create new local array
+   int revArr[sz];
+
+   //copy elements from input arr to revArr
+   memcpy((void*)revArr, (void*)arr, sizeof(int)*sz);
+
+   for(i=0;i<sz;i++)
+   {
+      printf("%d ", revArr[i]);
+   }
+
+   printf("\n");
+
+   for(i=0,j=sz-1;i<j;i++,j--)
+   {
+      swap(&revArr[i], &revArr[j]);
+   }
+
+   
+   for(i=0;i<sz;i++)
+   {
+      printf("%d ", revArr[i]);
+   }
+
+   printf("\n");
+
+   // return local array
+   return revArr;
+}
+
+//returning dynamic arrays, but to ensure that arrays malloced must be freed
+int *reverseArrRetDynamic(int *arr, int sz)
+{
+   int i,j;
+
+   //create new array from heap
+   int *revArr = (int *)malloc(sizeof(int)*sz);
+
+   //copy elements from input arr to revArr
+   memcpy((void*)revArr, (void*)arr, sizeof(int)*sz);
+
+   for(i=0;i<sz;i++)
+   {
+      printf("%d ", revArr[i]);
+   }
+
+   printf("\n");
+
+   for(i=0,j=sz-1;i<j;i++,j--)
+   {
+      swap(&revArr[i], &revArr[j]);
+   }
+
+   
+   for(i=0;i<sz;i++)
+   {
+      printf("%d ", revArr[i]);
+   }
+
+   printf("\n");
+
+   // return local array
+   return revArr;
+
+}
+
+int doublePointerDemo(void)
 {
 	uint8_t arr_1d[12] = 
 	{0x11, 0x22, 0x33, 0x44, 
@@ -69,3 +153,80 @@ int main(void)
 		//}
 	}
 }
+
+int *tgtSum(int *arr, int sum, int sz)
+{
+   int i,j;
+   int found = 0;
+
+   printf("%s: sz of arr %ld\n", __func__, sizeof(arr));
+
+   // total time complexity is O(N square)
+   for(i=0;i<sz;i++) //O(N)
+   {
+      for(j=i;j<sz;j++)    //O(N)
+      {
+         if((arr[i]+arr[j] == sum))
+         {
+            found = 1;
+            // break: breaks only one level of loop in which it is
+            break;
+         }
+      }
+      // this is to break the i loop
+      if(1 == found)
+      {
+         break;
+      }
+   }
+
+   if(found)
+   {
+      int *res = (int*)malloc(sizeof(int)*2);
+
+      printf("%d+%d = %d\n", arr[i], arr[j], sum);
+
+      res[0] = arr[i];
+      res[1] = arr[j];
+      return res;
+   }
+   
+   return NULL;
+}
+
+int main(int argc, char*argv[])
+{
+   int *resultArr;
+   int intArr[] = {1,2,3,4,5,6};
+   int i;
+   int sum=10;
+   
+   if(argc==2)
+   {
+      sum = atoi(argv[1]);
+   }
+
+   printf("%s: sz of arr %ld\n", __func__, sizeof(intArr));
+
+   resultArr = reverseArrRetDynamic(intArr, sizeof(intArr)/sizeof(int));
+
+   for(i=0; i<sizeof(intArr)/sizeof(int); i++)
+   {
+      printf("%d ", resultArr[i]);
+   }
+   printf("\n");
+
+   free(resultArr);
+
+   resultArr = tgtSum(intArr, sum, sizeof(intArr)/sizeof(int));
+
+   if(resultArr != NULL)
+   {
+      printf("%d %d", resultArr[0], resultArr[1]);
+
+      free(resultArr);
+   } 
+
+   printf("\n");
+}
+

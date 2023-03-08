@@ -3,7 +3,7 @@ PREFIX=arm-linux-gnueabihf-
 CC=gcc
 CFLAGS=-I.
 
-DEPS=app.o
+DEPS=check.o
 
 %.o:%.c
 	$(PREFIX)$(CC) -c $< -o $@ $(CFLAGS) -g

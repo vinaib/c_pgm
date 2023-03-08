@@ -201,6 +201,9 @@ eQerr_t cdequeue(xQueue_t *xpq, int32_t *pidata)
 * Insert on queuefull conditions:
 * One approach: return queue full state, and donot insert
 * second approach: increment 
+* 
+* ifront is incremented on overwriting old data and while 
+*        dequeue.
 ************************************************************/
 
 /*
@@ -276,6 +279,7 @@ eQerr_t advance_pointer(xQueue_t *xpq)
 {
 	assert(xpq);
 
+   /* When queue is full overwrite old data */
 	if(xpq->full)
 	{
 		xpq->ifront = (xpq->ifront+1)%xpq->isize;

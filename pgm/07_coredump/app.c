@@ -48,9 +48,22 @@ void null_access()
 	return;
 }
 
+void segFault()
+{
+   char *buf;
+   
+   buf = malloc(1 << 31);
+   fgets(buf, 1024, stdin);
+
+   printf("%s\n", buf);
+
+   return;
+}
+
 int main()
 {
-	write_underflow();
-	write_overflow_compilemem();
-	write_overflow_dynmem();
+	//write_underflow();
+	//write_overflow_compilemem();
+	//write_overflow_dynmem();
+   segFault();
 }

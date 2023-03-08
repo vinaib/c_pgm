@@ -5,7 +5,7 @@ CPP=g++
 DEPS=app.o 
 CPP_DEPS=cpp_app.o
 
-default:c_app cpp_app
+default:c_app
 
 %.o:%.c
 	$(CC) -c $< -o $@ $(CFLAGS) -g

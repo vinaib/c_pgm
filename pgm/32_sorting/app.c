@@ -14,15 +14,26 @@
  */
 ////// End of signature
 #define DBG_SWP
+#define DBF_BBL_SORT		
 
 void swap(int32_t *x, int32_t *y)
 {
 #ifdef DBG_SWP	
 	printf("swap(%d %d) -> ", *x, *y);
 #endif
+   // using this approach, if x and y are same then both x and y will be zero. 
+   // so this method is not best to use.
+   // please use swap with temp variable
+#ifdef SWAP_BY_ADD
 	*x = *x + *y;
 	*y = *x - *y;
 	*x = *x - *y;
+#else
+   int32_t temp;
+   temp = *x;
+   *x = *y;
+   *y = temp;
+#endif
 #ifdef DBG_SWP	
 	printf("(%d %d)\n", *x, *y);
 #endif
@@ -59,18 +70,18 @@ void bubble_sort(int32_t *a, int32_t n)
 	for(j = 0; j < n-1; j++) {
 		flag = 0;
 #ifdef DBF_BBL_SORT		
-		printf("Pass %d: ", j);
+		printf("Pass %d:\n", j);
 #endif
 		for(i = 0; i < n - 1 - j; i++) {
 			if(a[i] > a[i+1]) {
 				swap(&a[i], &a[i+1]);
 				flag = 1;
 			}
-#ifdef DBF_BBL_SORT		
+#ifdef VDBF_BBL_SORT		
 			printf("%d ",a[i]);
 #endif
 		}
-#ifdef DBF_BBL_SORT		
+#ifdef VDBF_BBL_SORT		
 		printf("\n");
 #endif
 
@@ -123,7 +134,7 @@ void insertion_sort(int32_t *a, int32_t n)
  */
 void selection_sort(int32_t *a, int32_t n)
 {
-	int32_t i,j,k;
+	int32_t i,j,min_idx;
 
 	printf("%s:\n", __FUNCTION__);
 
@@ -134,16 +145,17 @@ void selection_sort(int32_t *a, int32_t n)
 	 * element to be swapped with.
 	 */
 	for(i=0; i<n-1; i++) {
-		/* after inner loop traversal, k points to smallest element */
-		for(j=k=i; j<n; j++) {
-			if(a[j] < a[k]) {
-				k = j;
+		/* after inner loop traversal, min_idx points to smallest element 
+       */
+		for(j=min_idx=i; j<n; j++) {
+			if(a[j] < a[min_idx]) {
+				min_idx = j;
 			}
 		}
 
 		/* do not swap if i is already pointed to smallest element */
-		if(i!=k) {
-			swap(&a[i], &a[k]);
+		if(i!=min_idx) {
+			swap(&a[i], &a[min_idx]);
 		}
 	}
 

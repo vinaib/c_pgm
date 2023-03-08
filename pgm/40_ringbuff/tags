@@ -1,0 +1,114 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	0	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+spk_q	app.c	/^rb_t spk_q;$/;"	v
+mic_q	app.c	/^rb_t mic_q;$/;"	v
+exit_th	app.c	/^int32_t exit_th = 0;$/;"	v
+spk_buff	app.c	/^uint8_t spk_buff[RB_SIZE];$/;"	v
+mic_buff	app.c	/^uint8_t mic_buff[RB_SIZE];$/;"	v
+init_rb	app.c	/^init_rb_t 			init_rb 	= init_d_rb; $/;"	v
+is_rb_full	app.c	/^is_rb_full_t 			is_rb_full	= is_d_rb_full;$/;"	v
+is_rb_empty	app.c	/^is_rb_empty_t 			is_rb_empty 	= is_d_rb_full;$/;"	v
+get_rb_size	app.c	/^get_rb_size_t 			get_rb_size 	= get_d_rb_size;$/;"	v
+get_read_idx	app.c	/^get_read_idx_t 			get_read_idx 	= get_d_read_idx;$/;"	v
+get_write_idx	app.c	/^get_write_idx_t 		get_write_idx 	= get_d_write_idx;$/;"	v
+get_elements	app.c	/^get_elements_t 			get_elements	= get_d_elements;$/;"	v
+get_free_elements	app.c	/^get_free_elements_t 		get_free_elements 	= get_d_free_elements;$/;"	v
+increment_read_idx	app.c	/^increment_read_idx_t 		increment_read_idx 	= increment_d_read_idx;$/;"	v
+increment_write_idx	app.c	/^increment_write_idx_t 		increment_write_idx 	= increment_d_write_idx;$/;"	v
+increment_read_idx_with_len	app.c	/^increment_read_idx_with_len_t	increment_read_idx_with_len  = increment_d_read_idx_with_len;$/;"	v
+increment_write_idx_with_len	app.c	/^increment_write_idx_with_len_t	increment_write_idx_with_len = increment_d_write_idx_with_len;$/;"	v
+get_and_increment_write_idx	app.c	/^get_and_increment_write_idx_t 	get_and_increment_write_idx  = get_and_increment_d_write_idx;$/;"	v
+init_rb	app.c	/^init_rb_t 			init_rb 	= init_c_rb; $/;"	v
+is_rb_full	app.c	/^is_rb_full_t 			is_rb_full 	= is_c_rb_full;$/;"	v
+is_rb_empty	app.c	/^is_rb_empty_t 			is_rb_empty 	= is_c_rb_full;$/;"	v
+get_rb_size	app.c	/^get_rb_size_t 			get_rb_size 	= get_c_rb_size;$/;"	v
+get_read_idx	app.c	/^get_read_idx_t 			get_read_idx 	= get_c_read_idx;$/;"	v
+get_write_idx	app.c	/^get_write_idx_t 		get_write_idx 	= get_c_write_idx;$/;"	v
+get_elements	app.c	/^get_elements_t 			get_elements 	= get_c_elements;$/;"	v
+get_free_elements	app.c	/^get_free_elements_t 		get_free_elements 	= get_c_free_elements;$/;"	v
+increment_read_idx	app.c	/^increment_read_idx_t 		increment_read_idx 	= increment_c_read_idx;$/;"	v
+increment_write_idx	app.c	/^increment_write_idx_t 		increment_write_idx 	= increment_c_write_idx;$/;"	v
+increment_read_idx_with_len	app.c	/^increment_read_idx_with_len_t	increment_read_idx_with_len  = increment_c_read_idx_with_len;$/;"	v
+increment_write_idx_with_len	app.c	/^increment_write_idx_with_len_t	increment_write_idx_with_len = increment_c_write_idx_with_len;$/;"	v
+get_and_increment_write_idx	app.c	/^get_and_increment_write_idx_t 	get_and_increment_write_idx  = get_and_increment_c_write_idx;$/;"	v
+usb_rx_func	app.c	/^void *usb_rx_func(void *ptr)$/;"	f
+usb_tx_func	app.c	/^void *usb_tx_func(void *ptr)$/;"	f
+cdc_rx_func	app.c	/^void *cdc_rx_func(void *ptr)$/;"	f
+cdc_tx_func	app.c	/^void *cdc_tx_func(void *ptr)$/;"	f
+main	app.c	/^int main(int argc, char *argv[])$/;"	f
+init_c_rb	continuous.c	/^void init_c_rb(rb_t *rb, int32_t rbsz, int32_t elesz)$/;"	f
+get_c_write_idx	continuous.c	/^int32_t get_c_write_idx(rb_t *rb)$/;"	f
+get_c_read_idx	continuous.c	/^int32_t get_c_read_idx(rb_t *rb)$/;"	f
+increment_c_write_idx	continuous.c	/^int32_t increment_c_write_idx(rb_t *rb)$/;"	f
+increment_c_write_idx_with_len	continuous.c	/^int32_t increment_c_write_idx_with_len(rb_t *rb, int32_t len)$/;"	f
+increment_c_read_idx	continuous.c	/^int32_t increment_c_read_idx(rb_t *rb)$/;"	f
+increment_c_read_idx_with_len	continuous.c	/^int32_t increment_c_read_idx_with_len(rb_t *rb, int32_t len)$/;"	f
+get_and_increment_c_write_idx	continuous.c	/^int32_t get_and_increment_c_write_idx(rb_t *rb)$/;"	f
+get_c_elements	continuous.c	/^uint32_t get_c_elements(rb_t *rb)$/;"	f
+get_c_free_elements	continuous.c	/^uint32_t get_c_free_elements(rb_t *rb)$/;"	f
+is_c_rb_full	continuous.c	/^int32_t is_c_rb_full(rb_t *rb)$/;"	f
+is_c_rb_empty	continuous.c	/^int32_t is_c_rb_empty(rb_t *rb)$/;"	f
+get_c_rb_size	continuous.c	/^int32_t get_c_rb_size(rb_t *rb)$/;"	f
+__CONTINUOUS_H	continuous.h	2;"	d
+init_d_rb	discrete.c	/^void init_d_rb(rb_t *rb, int32_t rbsz, int32_t elesz)$/;"	f
+get_d_write_idx	discrete.c	/^int32_t get_d_write_idx(rb_t *rb)$/;"	f
+get_d_read_idx	discrete.c	/^int32_t get_d_read_idx(rb_t *rb)$/;"	f
+increment_d_write_idx	discrete.c	/^int32_t increment_d_write_idx(rb_t *rb)$/;"	f
+increment_d_write_idx_with_len	discrete.c	/^int32_t increment_d_write_idx_with_len(rb_t *rb, int32_t len)$/;"	f
+increment_d_read_idx	discrete.c	/^int32_t increment_d_read_idx(rb_t *rb)$/;"	f
+increment_d_read_idx_with_len	discrete.c	/^int32_t increment_d_read_idx_with_len(rb_t *rb, int32_t len)$/;"	f
+get_and_increment_d_write_idx	discrete.c	/^int32_t get_and_increment_d_write_idx(rb_t *rb)$/;"	f
+get_d_elements	discrete.c	/^uint32_t get_d_elements(rb_t *rb)$/;"	f
+get_d_free_elements	discrete.c	/^uint32_t get_d_free_elements(rb_t *rb)$/;"	f
+is_d_rb_full	discrete.c	/^int32_t is_d_rb_full(rb_t *rb)$/;"	f
+is_d_rb_empty	discrete.c	/^int32_t is_d_rb_empty(rb_t *rb)$/;"	f
+get_d_rb_size	discrete.c	/^int32_t get_d_rb_size(rb_t *rb)$/;"	f
+__DISCRETE_H	discrete.h	2;"	d
+CC	Makefile	/^CC=gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS=-I.$/;"	m
+FLAGS	Makefile	/^FLAGS=-lpthread$/;"	m
+DEBUG	Makefile	/^DEBUG=-g$/;"	m
+DEPS	Makefile	/^DEPS=app.o continuous.o discrete.o$/;"	m
+__RB_H	rb.h	2;"	d
+ELEMENTS	rb.h	4;"	d
+ELEMENT_SZ	rb.h	6;"	d
+RB_SIZE	rb.h	8;"	d
+THRESHOLD	rb.h	10;"	d
+DEBUG	rb.h	12;"	d
+DISCRETE_RB	rb.h	14;"	d
+CONTINUOUS_RB	rb.h	16;"	d
+DEBUG_THREAD	rb.h	18;"	d
+DIR_RX	rb.h	20;"	d
+DIR_TX	rb.h	21;"	d
+FIRST_90	rb.h	23;"	d
+rb	rb.h	/^typedef struct rb {$/;"	s
+iread	rb.h	/^ uint32_t iread;$/;"	m	struct:rb
+iwrite	rb.h	/^ uint32_t iwrite;$/;"	m	struct:rb
+irbsize	rb.h	/^ uint32_t irbsize;$/;"	m	struct:rb
+ielesize	rb.h	/^ uint32_t ielesize;$/;"	m	struct:rb
+full	rb.h	/^ uint32_t full;$/;"	m	struct:rb
+rb_t	rb.h	/^}rb_t;$/;"	t	typeref:struct:rb
+rb_error	rb.h	/^typedef enum rb_error {$/;"	g
+ERBSUCCESS	rb.h	/^ ERBSUCCESS 	= 0,$/;"	e	enum:rb_error
+ERBFULL	rb.h	/^ ERBFULL	= -1,$/;"	e	enum:rb_error
+ERBEMPTY	rb.h	/^ ERBEMPTY	= -2,$/;"	e	enum:rb_error
+ERBOVERFLOW	rb.h	/^ ERBOVERFLOW	= ERBFULL,$/;"	e	enum:rb_error
+ERBUNDERFLOW	rb.h	/^ ERBUNDERFLOW	= ERBEMPTY,$/;"	e	enum:rb_error
+rb_error_t	rb.h	/^}rb_error_t;$/;"	t	typeref:enum:rb_error
+init_rb_t	rb.h	/^typedef void (*init_rb_t) (rb_t *rb, int32_t rbsz, int32_t elesz);$/;"	t
+get_write_idx_t	rb.h	/^typedef int32_t (*get_write_idx_t) (rb_t *rb);$/;"	t
+get_read_idx_t	rb.h	/^typedef int32_t (*get_read_idx_t) (rb_t *rb);$/;"	t
+increment_write_idx_t	rb.h	/^typedef int32_t (*increment_write_idx_t) (rb_t *rb);$/;"	t
+increment_read_idx_t	rb.h	/^typedef int32_t (*increment_read_idx_t) (rb_t *rb);$/;"	t
+increment_read_idx_with_len_t	rb.h	/^typedef int32_t (*increment_read_idx_with_len_t) (rb_t *rb, int32_t len);$/;"	t
+increment_write_idx_with_len_t	rb.h	/^typedef int32_t (*increment_write_idx_with_len_t) (rb_t *rb, int32_t len);$/;"	t
+get_and_increment_write_idx_t	rb.h	/^typedef int32_t (*get_and_increment_write_idx_t) (rb_t *rb);$/;"	t
+get_elements_t	rb.h	/^typedef uint32_t (*get_elements_t) (rb_t *rb);$/;"	t
+get_free_elements_t	rb.h	/^typedef uint32_t (*get_free_elements_t) (rb_t *rb);$/;"	t
+is_rb_full_t	rb.h	/^typedef int32_t (*is_rb_full_t) (rb_t *rb);$/;"	t
+is_rb_empty_t	rb.h	/^typedef int32_t (*is_rb_empty_t) (rb_t *rb);$/;"	t
+get_rb_size_t	rb.h	/^typedef int32_t (*get_rb_size_t) (rb_t *rb);$/;"	t
