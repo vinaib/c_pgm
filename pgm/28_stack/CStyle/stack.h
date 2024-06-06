@@ -1,12 +1,13 @@
-#ifndef __STACK_H_
-#define __STACK_H_
+#ifndef __STACK_H__
+#define __STACK_H__
 
 #include<stdint.h>
 
 typedef struct node NODE_t;
 
-struct node {
-	void *data;
+struct node 
+{
+	void  *data;
 	NODE_t *next;
 };
 
@@ -33,4 +34,4 @@ uint32_t isFull();
 
 void display_stack(STACK_t *st);
 
-#endif /* __STACK_H_ */
+#endif // __STACK_H__
