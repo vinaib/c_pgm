@@ -1,8 +1,10 @@
 cmake_minimum_required(VERSION 3.16)
 
-set(CXX_STANDARD_REQUIRED 17)
+set(CXX_STANDARD_REQUIRED 3.16)
 
-project(24_queue)
+project(queue)
 
-add_executable(${PROJECT_NAME} app.c queue.c)
-target_include_directories(${PROJECT_NAME} PUBLIC .)
+add_subdirectory(queue_array)
+add_subdirectory(queue_linkedList)
+add_subdirectory(circularQueue)
+add_subdirectory(ringBuffer)
