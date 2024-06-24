@@ -19,6 +19,7 @@ class maxHeap
 
    private:
       std::vector<int> m_arr;
+      int m_size {};
 };
 
 #endif // __MAXHEAP_HPP__
