@@ -1,0 +1,10 @@
+{
+   "cmake.sourceDirectory": "/home/vinai/projects/c_pgm/pgm/32_sorting/cplusplus",
+   "files.associations": {
+      "array": "cpp",
+      "deque": "cpp",
+      "string": "cpp",
+      "vector": "cpp",
+      "iostream": "cpp"
+   }
+}
