@@ -16,12 +16,21 @@ void createHeap(maxHeap &h)
 }
 
 
+void createHeap2(maxHeap &h)
+{
+   std:vector<int> arr = {5, 8, 3, 9, 4, 1, 7};
+   h.heapify2(arr);
+   h.print();
+}
+
 int main(int argc, char *argv[])
 {
    maxHeap mh;
 
-   createHeap(mh);
-   mh.print();
+   createHeap2(mh);   
+
+   //createHeap(mh);
+   //mh.print();
    std::cout << "\n";
 
 #if 0 
@@ -41,6 +50,7 @@ int main(int argc, char *argv[])
    std::cout << "max element: " << mh.extract2() << "\n";
    std::cout << "max element: " << mh.extract2() << "\n";
    std::cout << "max element: " << mh.extract2() << "\n";
-   std::cout << "max element: " << mh.extract2() << "\n";
+   //std::cout << "max element: " << mh.extract2() << "\n";
 #endif
+
 }

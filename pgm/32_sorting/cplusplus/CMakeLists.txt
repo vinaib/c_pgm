@@ -6,3 +6,5 @@ project(CplusCplusSorting)
 
 add_subdirectory(QuickSort)
 add_subdirectory(HeapSort)
+add_subdirectory(HeapifyArrFrom0)
+add_subdirectory(countSort)

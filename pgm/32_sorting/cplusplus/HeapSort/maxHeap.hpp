@@ -14,6 +14,7 @@ class maxHeap
       int extract();
       int extract2();
       void heapify();
+      void heapify2(vector<int>& arr);
       void sort();
       void print() const;
 

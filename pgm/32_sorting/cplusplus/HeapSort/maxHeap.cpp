@@ -83,6 +83,11 @@ int maxHeap::extract()
    return max;
 }
 
+/**
+ * @brief after extract max element push it to last
+ * 
+ * @return int 
+ */
 int maxHeap::extract2()
 {
    int max = m_arr[1];
@@ -173,6 +178,76 @@ void maxHeap::heapify()
    }
 
    m_arr[i] = element;
+}
+
+/**
+ * @brief heapify the given array.
+ * Start traversing array from right to left
+ * Leaf nodes are heap by itself
+ * This way of heapify is faster than first way.
+ * Half of the elements are leaf nodes, and they are heap by itself. 
+ * We have to process only other half. 
+ * 
+ * @param arr 
+ * Given array starts from index 0 to n-1
+ * 
+ * for heap, we have to store it from 1 to n-1, 0 is ignored.
+ */
+void maxHeap::heapify2(vector<int>& arr)
+{
+   int n = arr.size();
+
+   // update size
+   m_size += n;
+
+   // 0 to size()
+   for(int copyIdx = 0; copyIdx < n; copyIdx++)
+   {
+      m_arr.push_back(arr[copyIdx]);
+   }
+
+   // 1 to size()
+   n = m_arr.size()-1;
+   
+   // start from size - 1 to 1. Do not process 0
+   for(int i = n; i > 0; i--)
+   {
+      // if leaf node, just increment
+      if(i*2 > n)
+      {
+         // do nothing, no child
+         std::cout << " L ";
+      }
+      // if intermediate node, compare with its children
+      else
+      {
+         int k = i;
+         int j = 2 * k;
+
+         // go down till leaf node
+         while(j < n)
+         {
+            std::cout << " I ";
+            if(m_arr[j+1] > m_arr[j])
+            {
+                  j++;
+            }
+            
+            if(m_arr[j] > m_arr[k])
+            {
+               std::swap(m_arr[k], m_arr[j]);
+               k = j;
+               j = 2 * k;
+            }
+            else
+            {
+               break;
+            }
+         }
+      }
+   }
+
+   std::cout << " \n ";
 }
 
 void maxHeap::sort()
