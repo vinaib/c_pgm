@@ -42,6 +42,38 @@ int optPowerof2(int k)
    }
 }
 
+int moreOptPowerof2(int n)
+{
+   std::cout << ">>> " << n << '\n';
+
+   int result=0;
+   if( 0 == n)
+   {
+      return 1;
+   }
+   else if( 1 == n)
+   {
+      return 2;
+   }
+   else 
+   {
+      if(n % 2)
+      {
+         // odd
+         result = moreOptPowerof2(n/2);
+         result = 2 * result * result;
+         return result;
+      }
+      else
+      {
+         result = moreOptPowerof2(n/2);
+         result = result * result;
+         return result;
+      }
+   }
+   return 0;
+}
+
 int main(int argc, char *argv[])
 {
    int power = 5;
@@ -53,6 +85,8 @@ int main(int argc, char *argv[])
 
    std::cout << "Power of 2: " << powerof2(power) << '\n';
    std::cout << "Power of 2: " << optPowerof2(power) << '\n';
+   std::cout << "Power of 2: " << moreOptPowerof2(power) << '\n';
+   
 
    return 0;
 }
